@@ -54,16 +54,3 @@ RSpec.describe 'Site Navigation' do
 
   end
 end
-#
-# ```
-# [ ] done
-#
-# User Story 2, Visitor Navigation
-#
-# As a visitor
-# I see a navigation bar
-# This navigation bar includes links for the following:
-
-# - a link to the user registration page ("/register")
-
-# ```
