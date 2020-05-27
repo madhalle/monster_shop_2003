@@ -17,6 +17,12 @@ RSpec.describe 'Site Navigation' do
       end
 
       expect(current_path).to eq('/merchants')
+
+      within 'nav' do
+        click_link 'Home'
+      end
+
+      expect(current_path).to eq('/')
     end
 
     it "I can see a cart indicator on all pages" do
@@ -33,5 +39,20 @@ RSpec.describe 'Site Navigation' do
       end
 
     end
+
   end
 end
+#
+# ```
+# [ ] done
+#
+# User Story 2, Visitor Navigation
+#
+# As a visitor
+# I see a navigation bar
+# This navigation bar includes links for the following:
+
+# - a link to log in ("/login")
+# - a link to the user registration page ("/register")
+
+# ```
