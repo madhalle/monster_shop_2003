@@ -23,6 +23,18 @@ RSpec.describe 'Site Navigation' do
       end
 
       expect(current_path).to eq('/')
+
+      within 'nav' do
+        click_link 'Log in'
+      end
+
+      expect(current_path).to eq('/login')
+
+      within 'nav' do
+        click_link 'Register'
+      end
+
+      expect(current_path).to eq('/register')
     end
 
     it "I can see a cart indicator on all pages" do
@@ -52,7 +64,6 @@ end
 # I see a navigation bar
 # This navigation bar includes links for the following:
 
-# - a link to log in ("/login")
 # - a link to the user registration page ("/register")
 
 # ```
