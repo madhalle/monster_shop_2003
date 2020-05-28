@@ -37,6 +37,30 @@ RSpec.describe 'Site Navigation' do
       expect(current_path).to eq('/register')
     end
 
+    describe 'As a Merchant Employee' do
+      it 'I see a nav bar with the same links as a user, plus a link to the merchant dashboard' do
+
+        merchant = User.create!(name: "Fiona",
+                           address: "123 Top Of The Tower",
+                           city: "Duloc City",
+                           state: "Duloc State",
+                           zip: 10001,
+                           email: "p.fiona12@castle.co",
+                           password: "boom",
+                           role: 1)
+
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+        
+        visit '/merchants'
+
+        within 'nav' do
+          click_link 'Dashboard'
+        end
+
+        expect(current_path).to eq('/merchant')
+      end
+    end
+
     it "I can see a cart indicator on all pages" do
       visit '/merchants'
 

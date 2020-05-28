@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   get "/", to: "items#index"
   get "/login", to: "sessions#new"
   get "/register", to: "users#new"
+
+  get '/merchant', to: "dashboard#index"
+
+
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
   get "/merchants/:id", to: "merchants#show"
