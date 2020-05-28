@@ -13,7 +13,7 @@ describe "As a default user" do
                          role: 0)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      session[:user_id] = User.last.id
+
       visit "/user/profile"
 
 
