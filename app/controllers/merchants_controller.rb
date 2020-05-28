@@ -41,10 +41,13 @@ class MerchantsController <ApplicationController
     redirect_to '/merchants'
   end
 
+  def error
+    render file: "/public/404" unless current_admin?
+  end
+
   private
 
   def merchant_params
     params.permit(:name,:address,:city,:state,:zip)
   end
-
 end
