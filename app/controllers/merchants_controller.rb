@@ -1,6 +1,7 @@
 class MerchantsController <ApplicationController
 
   def index
+    render file: "/public/404" if current_admin?
     @merchants = Merchant.all
   end
 
@@ -40,6 +41,11 @@ class MerchantsController <ApplicationController
     Merchant.destroy(params[:id])
     redirect_to '/merchants'
   end
+
+  def error
+    render file: "/public/404" 
+  end
+
 
   private
 

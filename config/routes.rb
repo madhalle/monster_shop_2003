@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/", to: "items#index"
   get "/login", to: "sessions#new"
   get "/register", to: "users#new"
+
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
   get "/merchants/:id", to: "merchants#show"
@@ -10,7 +11,8 @@ Rails.application.routes.draw do
   get "/merchants/:id/edit", to: "merchants#edit"
   patch "/merchants/:id", to: "merchants#update"
   delete "/merchants/:id", to: "merchants#destroy"
-
+  get "/merchant", to: "merchants#error"
+  
   get "/items", to: "items#index"
   get "/items/:id", to: "items#show"
   get "/items/:id/edit", to: "items#edit"
