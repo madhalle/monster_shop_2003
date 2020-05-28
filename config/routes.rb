@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   get "/register", to: "users#new"
 
-  get "/profile", to: "profile#index"
-  get "/logout", to: "welcome#index"
-
+  namespace :user do
+    get "/profile", to: "users#show"
+    get "/logout", to: "welcome#index"
+  end
 
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
@@ -43,11 +44,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/", to: "orders#index"
-    # get "/admin", to: "admin#index"
     get "/users", to: "users#index"
   end
 
-  get "/profile", to: "users#show"
+  # get "/profile", to: "users#show"
 
   namespace :merchant do
     get '/', to: "dashboard#index"

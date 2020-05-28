@@ -29,7 +29,7 @@ RSpec.describe 'user new page', type: :feature do
 
       new_user = User.last
 
-      expect(current_path).to eq('/profile')
+      expect(current_path).to eq('/user/profile')
       expect(page).to have_content('Success! You are now registered and logged in as a User!')
       expect(new_user.name).to eq(name)
       expect(new_user.address).to eq(address)
@@ -105,7 +105,7 @@ RSpec.describe 'user new page', type: :feature do
 
       new_user = User.last
 
-      expect(current_path).to eq('/profile')
+      expect(current_path).to eq('/user/profile')
       expect(page).to have_content('Success! You are now registered and logged in as a User!')
       expect(new_user.name).to eq(name)
       expect(new_user.address).to eq(address)
