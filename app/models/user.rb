@@ -5,7 +5,7 @@ class User < ApplicationRecord
                         :city,
                         :state,
                         :zip
-  validates_presence_of :email, uniqueness: true
+  validates_uniqueness_of :email
   validates_presence_of :password, require: true
 
   has_secure_password
