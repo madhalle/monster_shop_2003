@@ -114,7 +114,7 @@ You will need to set up some basic routing and empty controller actions and empt
 
 
 ```
-[ ] done
+[x] done
 
 User Story 2, Visitor Navigation
 

@@ -1,6 +1,7 @@
 class MerchantsController <ApplicationController
 
   def index
+    render file: "/public/404" if current_admin?
     @merchants = Merchant.all
   end
 
@@ -42,7 +43,7 @@ class MerchantsController <ApplicationController
   end
 
   def error
-    render file: "/public/404" unless current_admin?
+    render file: "/public/404" 
   end
 
   private
