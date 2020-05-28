@@ -60,7 +60,7 @@ RSpec.describe 'Site Navigation', type: :feature do
                            role: 1)
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
-        
+
         visit '/merchants'
 
         within 'nav' do
@@ -177,6 +177,29 @@ RSpec.describe 'Site Navigation', type: :feature do
 
       visit "/profile"
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
+  end
+
+  describe 'As a Merchant Employee' do
+    it "I receive a 404 error when I try to access admin paths" do
+      merchant = User.create!(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: "p.fiona12@castle.co",
+                         password: "boom",
+                         role: 1)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+
+      visit "/admin"
+
+      expect(page).to have_content("The page you were looking for doesn't exist")
+
+      visit "/admin/users"
+      save_and_open_page
+      expect(page).to have_content("The page you were looking for doesn't exist")
     end
   end
 end
