@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/merchants/:id/edit", to: "merchants#edit"
   patch "/merchants/:id", to: "merchants#update"
   delete "/merchants/:id", to: "merchants#destroy"
+  get "/merchant", to: "merchants#error"
 
   get "/items", to: "items#index"
   get "/items/:id", to: "items#show"
@@ -38,4 +39,11 @@ Rails.application.routes.draw do
 
   get "/admin", to: "orders#index"
   get "/admin/users", to: "users#index"
+
+  get "/profile", to: "users#show"
+
+  namespace :merchant do
+    get '/merchant', to: "dashboard#index"
+  end
+
 end

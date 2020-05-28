@@ -142,4 +142,17 @@ RSpec.describe 'Site Navigation', type: :feature do
       end
     end
   end
+
+  describe 'As a Visitor' do
+    it "I receive 404 errors when trying to access restricted paths" do
+      visit "/merchant"
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit "/admin"
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit "/profile"
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
+  end
 end
