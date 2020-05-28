@@ -63,5 +63,47 @@ RSpec.describe 'user new page', type: :feature do
       expect(current_path).to eq('/register')
       expect(page).to have_content('All fields are required. Please enter information in all fields.')
     end
+
+    it "Email must be unique to register" do
+
+      user = User.create!(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: 'gingerbread.man@sweets.com',
+                         password: "boom",
+                         role: 1)
+
+      name = 'Gingerbread Man'
+      address = '123 Oven Circle'
+      city = 'Duloc City'
+      state = 'Duloc State'
+      email = 'gingerbread.man@sweets.com'
+      password = 'MyPassword!'
+
+      visit '/register'
+
+      fill_in :name, with: name
+      fill_in :address, with: address
+      fill_in :city, with: city
+      fill_in :state, with: state
+      fill_in :zip, with: zip
+      fill_in :email, with: email
+      fill_in :password, with: password
+      fill_in :password_confirmation, with: password
+
+      click_button "Create User"
+
+      expect(current_path).to eq("/register")
+      expect(page).to have_content("This email address is registered to another account")
+      expect(page).to have_content(name)
+      expect(page).to have_content(address)
+      expect(page).to have_content(city)
+      expect(page).to have_content(state)
+      expect(page).to_not have_content(email)
+      expect(page).to_not have_content(password)
+
+    end
   end
 end
