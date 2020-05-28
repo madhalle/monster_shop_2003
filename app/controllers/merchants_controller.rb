@@ -1,7 +1,6 @@
 class MerchantsController <ApplicationController
 
   def index
-    render file: "/public/404" if current_admin?
     @merchants = Merchant.all
   end
 
