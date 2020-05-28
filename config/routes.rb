@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   get "/profile", to: "profile#index"
   get "/logout", to: "welcome#index"
 
-  get "/merchant", to: "merchant#index"
-
-  get "/admin", to: "admin#index"
 
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
@@ -45,11 +42,15 @@ Rails.application.routes.draw do
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"
 
-  get "/admin", to: "orders#index"
-  get "/admin/users", to: "users#index"
+  namespace :admin do
+    get "/", to: "orders#index"
+    # get "/admin", to: "admin#index"
+    get "/users", to: "users#index"
+  end
 
   get "/profile", to: "users#show"
 
+  get "/merchant", to: "merchant#index"
   namespace :merchant do
     get '/merchant', to: "dashboard#index"
   end
