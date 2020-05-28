@@ -14,6 +14,9 @@ class SessionsController < ApplicationController
       elsif current_merchant?
         redirect_to "/merchant"
       end
+    else
+      flash[:error] = "Sorry, your credentials are bad."
+      render :new
     end
   end
 end
