@@ -46,11 +46,9 @@ class MerchantsController <ApplicationController
     render file: "/public/404" 
   end
 
-
   private
 
   def merchant_params
     params.permit(:name,:address,:city,:state,:zip)
   end
-
 end
