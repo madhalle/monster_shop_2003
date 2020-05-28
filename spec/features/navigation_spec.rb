@@ -142,4 +142,24 @@ RSpec.describe 'Site Navigation', type: :feature do
       end
     end
   end
+
+  describe 'As a Visitor' do
+    it "I receive 404 errors when trying to access restricted paths" do
+      user = User.create!(name: "Gingerbread Man",
+                          address: "123 Oven Circle",
+                          city: "Duloc City",
+                          state: "Duloc State",
+                          zip: 10001,
+                          email: "gingerbread.man@sweets.com",
+                          password: "Password",
+                          role: 0)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit "/merchants"
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit "/admin"
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
+  end
 end
