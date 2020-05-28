@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get "/merchants/:id/edit", to: "merchants#edit"
   patch "/merchants/:id", to: "merchants#update"
   delete "/merchants/:id", to: "merchants#destroy"
-  get "/merchant", to: "merchants#error"
 
   get "/items", to: "items#index"
   get "/items/:id", to: "items#show"
@@ -50,9 +49,8 @@ Rails.application.routes.draw do
 
   get "/profile", to: "users#show"
 
-  get "/merchant", to: "merchant#index"
   namespace :merchant do
-    get '/merchant', to: "dashboard#index"
+    get '/', to: "dashboard#index"
   end
 
   resources :users, only: [:create]
