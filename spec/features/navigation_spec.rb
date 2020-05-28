@@ -53,8 +53,27 @@ RSpec.describe 'Site Navigation' do
   end
 
   describe 'As a User' do
+    before(:each) do
+      @user = User.create(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: "p.fiona12@castle.co",
+                         password: "boom",
+                         role: 0)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    end
+
     it "I see a nav bar with links to all pages" do
       visit '/merchants'
+
+      within 'nav' do
+        click_link 'Home'
+      end
+
+      expect(current_path).to eq('/')
 
       within 'nav' do
         click_link 'All Items'
@@ -69,16 +88,14 @@ RSpec.describe 'Site Navigation' do
       expect(current_path).to eq('/merchants')
 
       within 'nav' do
-        click_link 'Home'
-      end
-
-      expect(current_path).to eq('/')
-
-      within 'nav' do
         click_link 'My Profile'
       end
 
       expect(current_path).to eq('/profile')
+
+      within 'nav' do
+        expect(page).to have_content("Logged in as #{@user.name}")
+      end
 
       within 'nav' do
         click_link 'Log Out'
@@ -99,11 +116,6 @@ RSpec.describe 'Site Navigation' do
       within 'nav' do
         expect(page).to have_content("Cart: 0")
       end
-    end
-
-    it "I can see text emplaining that I'm logged in" do
-
-      expect(page).to have_content("Logged in as User Name")
     end
   end
 end
