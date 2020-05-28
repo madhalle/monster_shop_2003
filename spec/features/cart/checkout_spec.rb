@@ -36,4 +36,32 @@ RSpec.describe 'Cart show' do
       expect(page).to_not have_link("Checkout")
     end
   end
+  describe 'When admin tried to access cart or merchant pages' do
+    it 'there is a 404 error message' do
+      admin = User.create(name: "Lord Farquaad",
+                          address: "123 Castle Lane",
+                          city: "Duloc City",
+                          state: "Duloc State",
+                          zip: 10001,
+                          email: "lord.farquaad@castle.gov",
+                          password: "Password",
+                          role: 2)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit "/merchant"
+
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
+  end
 end
+# ```
+# [ ] done
+#
+# User Story 9, Admin Navigation Restrictions
+#
+# As an admin
+# When I try to access any path that begins with the following, then I see a 404 error:
+# - '/merchant'
+# - '/cart'
+# ```
