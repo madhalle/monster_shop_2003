@@ -7,7 +7,6 @@ class CartController < ApplicationController
   end
 
   def show
-    render file: "/public/404" if current_admin?
     @items = cart.items
   end
 

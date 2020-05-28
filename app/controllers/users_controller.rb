@@ -3,11 +3,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    render file: "/public/404" unless current_admin?
   end
 
   def show
-    render file: "/public/404" unless current_user
   end
 
   def create
