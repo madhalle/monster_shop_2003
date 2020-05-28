@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    # code
   end
 
   def create
@@ -14,17 +13,7 @@ class SessionsController < ApplicationController
         redirect_to "/admin"
       elsif current_merchant?
         redirect_to "/merchant"
-      end 
+      end
     end
   end
 end
-
-
-# if user.authenticate(params[:password]) # 12345
-#   session[:user_id] = user.id
-#   flash[:success] = "Welcome, #{user.username}!"
-#   redirect_to "/"
-# else
-#   flash[:error] = "Sorry, your credentials are bad."
-#   render :new
-# end

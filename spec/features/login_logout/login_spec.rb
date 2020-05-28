@@ -41,6 +41,7 @@ RSpec.describe "Login" do
 
       expect(current_path).to eq("/profile/#{@registered_user.id}")
     end
+
     it "as a merchant, they are directed to their merchant dashboard page" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
       visit '/login'
@@ -52,6 +53,7 @@ RSpec.describe "Login" do
 
       expect(current_path).to eq("/merchant")
     end
+
     it "as an admin, they are directed to their admin dashboard page" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit '/login'
@@ -64,6 +66,5 @@ RSpec.describe "Login" do
       expect(current_path).to eq("/admin")
       expect(page).to have_content("Welcome, #{@admin.name}!")
     end
-
   end
 end
