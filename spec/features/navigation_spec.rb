@@ -198,7 +198,7 @@ RSpec.describe 'Site Navigation', type: :feature do
       expect(page).to have_content("The page you were looking for doesn't exist")
 
       visit "/admin/users"
-      save_and_open_page
+
       expect(page).to have_content("The page you were looking for doesn't exist")
     end
   end

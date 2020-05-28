@@ -79,9 +79,11 @@ RSpec.describe 'user new page', type: :feature do
       address = '123 Oven Circle'
       city = 'Duloc City'
       state = 'Duloc State'
+      zip = 10001
       email = 'gingerbread.man@sweets.com'
       password = 'MyPassword!'
 
+      unique_email = 'gingerbread.man2@sweets.com'
       visit '/register'
 
       fill_in :name, with: name
@@ -95,15 +97,23 @@ RSpec.describe 'user new page', type: :feature do
 
       click_button "Create User"
 
-      expect(current_path).to eq("/register")
       expect(page).to have_content("This email address is registered to another account")
-      expect(page).to have_content(name)
-      expect(page).to have_content(address)
-      expect(page).to have_content(city)
-      expect(page).to have_content(state)
-      expect(page).to_not have_content(email)
-      expect(page).to_not have_content(password)
 
+      fill_in :email, with: unique_email
+      fill_in :password, with: password
+      fill_in :password_confirmation, with: password
+      click_button "Create User"
+
+      new_user = User.last
+
+      expect(current_path).to eq('/profile')
+      expect(page).to have_content('Success! You are now registered and logged in as a User!')
+      expect(new_user.name).to eq(name)
+      expect(new_user.address).to eq(address)
+      expect(new_user.city).to eq(city)
+      expect(new_user.state).to eq(state)
+      expect(new_user.zip).to eq(zip)
+      expect(new_user.email).to eq(unique_email)
     end
   end
 end
