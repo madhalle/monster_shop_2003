@@ -11,4 +11,9 @@ class User < ApplicationRecord
   has_secure_password
 
   enum role: %w(user merchant admin)
+
+  def self.unique_email?(email)
+    return false if pluck(:email).include?(email)
+    true 
+  end
 end

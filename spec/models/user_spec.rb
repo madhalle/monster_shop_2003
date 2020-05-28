@@ -29,7 +29,7 @@ describe User, type: :model do
       expect(user.role).to eq("user")
       expect(user.user?).to be_truthy
     end
-    
+
     it "can be created as a merchant user" do
       user = User.create(name: "Fiona",
                          address: "123 Top Of The Tower",
@@ -53,5 +53,31 @@ describe User, type: :model do
     it {should validate_presence_of(:zip)}
     it {should validate_uniqueness_of(:email)}
     it {should validate_presence_of(:password)}
+  end
+
+  describe "methods" do
+    it "#unique_email?" do
+      user1 = User.create(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: "p.fiona12@castle.co",
+                         password: "boom",
+                         role: 1)
+      user2 = User.create(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: "p.fiona12@castle2.co",
+                         password: "boom",
+                         role: 1)
+
+      email = "gingerbread_man@gmail.com"
+
+      expect(User.unique_email?(email)).to eq(true)
+      expect(User.unique_email?(user1.email)).to eq(false)
+    end
   end
 end
