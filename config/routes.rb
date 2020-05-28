@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "/", to: "items#index"
   get "/login", to: "sessions#new"
   get "/register", to: "users#new"
-  get "/profile", to: "users#show"
+  get "/profile", to: "profile#index"
   get "/logout", to: "welcome#index"
 
   get "/merchants", to: "merchants#index"
