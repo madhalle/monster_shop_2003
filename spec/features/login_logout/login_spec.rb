@@ -41,25 +41,29 @@ RSpec.describe "Login" do
 
       expect(current_path).to eq("/profile/#{@registered_user.id}")
     end
-    xit "as a merchant, they are directed to their merchant dashboard page" do
+    it "as a merchant, they are directed to their merchant dashboard page" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
+      visit '/login'
 
+      fill_in :email, with:"p.fiona12@castle.co"
+      fill_in :password, with:"boom"
+
+      click_button "Log In"
+
+      expect(current_path).to eq("/merchant")
     end
-    xit "as an admin, they are directed to their admin dashboard page" do
+    it "as an admin, they are directed to their admin dashboard page" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+      visit '/login'
 
+      fill_in :email, with:"donkey@castle.co"
+      fill_in :password, with:"boom"
+
+      click_button "Log In"
+
+      expect(current_path).to eq("/admin")
+      expect(page).to have_content("Welcome, #{@admin.name}!")
     end
 
   end
 end
-# [ ] done
-#
-# User Story 13, User can Login
-#
-# As a visitor
-# When I visit the login path
-# I see a field to enter my email address and password
-# When I submit valid information
-# If I am a regular user, I am redirected to my profile page
-# If I am a merchant user, I am redirected to my merchant dashboard page
-# If I am an admin user, I am redirected to my admin dashboard page
-# And I see a flash message that I am logged in
-# ```
