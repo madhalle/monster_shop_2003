@@ -60,8 +60,7 @@ RSpec.describe 'user new page', type: :feature do
 
       click_button 'Create User'
 
-      expect(current_path).to eq('/register')
-      expect(page).to have_content('All fields are required. Please enter information in all fields.')
+      expect(page).to have_content("Zip can't be blank and Password confirmation doesn't match Password")
     end
 
     it "Email must be unique to register" do
@@ -97,7 +96,7 @@ RSpec.describe 'user new page', type: :feature do
 
       click_button "Create User"
 
-      expect(page).to have_content("This email address is registered to another account")
+      expect(page).to have_content("Email has already been taken")
 
       fill_in :email, with: unique_email
       fill_in :password, with: password
