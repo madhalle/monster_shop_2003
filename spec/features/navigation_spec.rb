@@ -186,18 +186,6 @@ RSpec.describe 'Site Navigation', type: :feature do
       end
 
       expect(current_path).to eq('/')
-
-      within 'nav' do
-        click_link 'Log in'
-      end
-
-      expect(current_path).to eq('/login')
-
-      within 'nav' do
-        click_link 'Register'
-      end
-
-      expect(current_path).to eq('/register')
     end
 
     it "I see admin specific links on the nav bar" do
@@ -241,6 +229,7 @@ RSpec.describe 'Site Navigation', type: :feature do
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
 
       visit "/profile"
+      
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
     end
   end
