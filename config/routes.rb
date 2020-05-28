@@ -50,4 +50,6 @@ Rails.application.routes.draw do
     get '/merchant', to: "dashboard#index"
   end
 
+  resources :users, only: [:create]
+
 end
