@@ -117,5 +117,15 @@ RSpec.describe 'Site Navigation' do
         expect(page).to have_content("Cart: 0")
       end
     end
+
+    it "I see a 404 error when visiting pages not accessible to me" do
+      visit "/merchant"
+
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit "/admin"
+      
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
   end
 end
