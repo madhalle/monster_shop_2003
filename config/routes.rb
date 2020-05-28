@@ -38,4 +38,6 @@ Rails.application.routes.draw do
 
   get "/admin", to: "orders#index"
   get "/admin/users", to: "users#index"
+
+  get "/profile", to: "users#show"
 end

@@ -29,7 +29,7 @@ describe User do
       expect(user.role).to eq("user")
       expect(user.user?).to be_truthy
     end
-    it "can be created as a default user" do
+    it "can be created as a merchant user" do
       user = User.create(name: "Fiona",
                          address: "123 Top Of The Tower",
                          city: "Duloc City",
