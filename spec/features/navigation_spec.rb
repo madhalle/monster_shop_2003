@@ -60,7 +60,7 @@ RSpec.describe 'Site Navigation', type: :feature do
                            role: 1)
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
-        
+
         visit '/merchants'
 
         within 'nav' do
@@ -151,6 +151,16 @@ RSpec.describe 'Site Navigation', type: :feature do
         expect(page).to have_content("Cart: 0")
       end
     end
+
+    it "I see a 404 error when visiting pages not accessible to me" do
+      visit "/merchant"
+
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+      visit "/admin"
+      
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
   end
 
   describe 'As a Admin' do
@@ -186,18 +196,6 @@ RSpec.describe 'Site Navigation', type: :feature do
       end
 
       expect(current_path).to eq('/')
-
-      within 'nav' do
-        click_link 'Log in'
-      end
-
-      expect(current_path).to eq('/login')
-
-      within 'nav' do
-        click_link 'Register'
-      end
-
-      expect(current_path).to eq('/register')
     end
 
     it "I see admin specific links on the nav bar" do
@@ -241,7 +239,31 @@ RSpec.describe 'Site Navigation', type: :feature do
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
 
       visit "/profile"
+      
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
+  end
+
+  describe 'As a Merchant Employee' do
+    it "I receive a 404 error when I try to access admin paths" do
+      merchant = User.create!(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: "p.fiona12@castle.co",
+                         password: "boom",
+                         role: 1)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+
+      visit "/admin"
+
+      expect(page).to have_content("The page you were looking for doesn't exist")
+
+      visit "/admin/users"
+
+      expect(page).to have_content("The page you were looking for doesn't exist")
     end
   end
 end

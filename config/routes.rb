@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get "/profile", to: "profile#index"
   get "/logout", to: "welcome#index"
 
+  get "/merchant", to: "merchant#index"
+
+  get "/admin", to: "admin#index"
+
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
   get "/merchants/:id", to: "merchants#show"
@@ -49,5 +53,7 @@ Rails.application.routes.draw do
   namespace :merchant do
     get '/merchant', to: "dashboard#index"
   end
+
+  resources :users, only: [:create]
 
 end
