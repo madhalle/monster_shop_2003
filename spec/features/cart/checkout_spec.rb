@@ -55,13 +55,3 @@ RSpec.describe 'Cart show' do
     end
   end
 end
-# ```
-# [ ] done
-#
-# User Story 9, Admin Navigation Restrictions
-#
-# As an admin
-# When I try to access any path that begins with the following, then I see a 404 error:
-# - '/merchant'
-# - '/cart'
-# ```

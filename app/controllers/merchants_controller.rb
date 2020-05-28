@@ -42,10 +42,6 @@ class MerchantsController <ApplicationController
     redirect_to '/merchants'
   end
 
-  def error
-    render file: "/public/404" 
-  end
-
   private
 
   def merchant_params
