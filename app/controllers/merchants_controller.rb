@@ -1,5 +1,4 @@
 class MerchantsController <ApplicationController
-  before_action :restrict_access
 
   def index
     @merchants = Merchant.all
@@ -42,14 +41,13 @@ class MerchantsController <ApplicationController
     redirect_to '/merchants'
   end
 
+  def error
+    render file: "/public/404" unless current_admin?
+  end
+
   private
 
   def merchant_params
     params.permit(:name,:address,:city,:state,:zip)
   end
-
-  def restrict_access
-    render file: "/public/404" unless current_merchant?
-  end
-
 end
