@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.name}!"
       if current_user?
-        redirect_to "/profile/#{current_user.id}"
+        redirect_to "/profile"
       elsif current_admin?
         redirect_to "/admin"
       elsif current_merchant?

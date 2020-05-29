@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   get "/register", to: "users#new"
 
-  get "/profile", to: "profile#index"
-  get "/profile/:id", to: "profile#show"
+  # get "/profile", to: "profile#index"
+  get "/profile", to: "profile#show"
 
   get "/logout", to: "welcome#index"
 

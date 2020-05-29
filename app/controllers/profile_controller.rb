@@ -4,6 +4,6 @@ class ProfileController < ApplicationController
   end
 
   def show
-    # code
+    @user = User.find(session[:user_id])
   end
 end
