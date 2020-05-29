@@ -66,6 +66,7 @@ RSpec.describe "Login" do
       expect(current_path).to eq("/admin")
       expect(page).to have_content("Welcome, #{@admin.name}!")
     end
+
     it "will display an error flash if credentials are bad" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit '/login'
@@ -77,6 +78,55 @@ RSpec.describe "Login" do
 
       expect(current_path).to eq("/login")
       expect(page).to have_content("Sorry, your credentials are bad.")
+    end
+
+
+    it "As a registered user, I see a message indicating I am already logged in" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@registered_user)
+
+      visit "/login"
+
+      fill_in :email, with:"bigshrek12@castle.co"
+      fill_in :password, with:"boom"
+
+      click_button "Log In"
+
+      visit "/login"
+
+      expect(current_path).to eq("/profile/#{@registered_user.id}")
+      expect(page).to have_content("I am already logged in")
+    end
+
+    it "As a merchant, I see a message indicating I am already logged in" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
+
+      visit "/login"
+
+      fill_in :email, with:"p.fiona12@castle.co"
+      fill_in :password, with:"boom"
+
+      click_button "Log In"
+
+      visit "/login"
+
+      expect(current_path).to eq("/merchant")
+      expect(page).to have_content("I am already logged in")
+    end
+
+    it "As an admin, I see a message indicating I am alreay logged in" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+
+      visit "/login"
+
+      fill_in :email, with:"donkey@castle.co"
+      fill_in :password, with:"boom"
+
+      click_button "Log In"
+
+      visit "/login"
+
+      expect(current_path).to eq("/admin")
+      expect(page).to have_content("I am already logged in")
     end
 
     # it "will display an error flash if user is already logged in" do
@@ -91,6 +141,7 @@ RSpec.describe "Login" do
     #   expect(page).to have_content("You are already logged in.")
     #   expect(current_path).to eq("/login")
     # end
+
   end
 end
 # [x] done
