@@ -284,7 +284,7 @@ Our application wouldn't be much use if users could not log in to use it.
 
 
 ```
-[ ] done
+[x] done
 
 User Story 13, User can Login
 
@@ -299,7 +299,7 @@ And I see a flash message that I am logged in
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 14, User cannot log in with bad credentials
 
@@ -312,7 +312,7 @@ I am NOT told whether it was my email or password that was incorrect
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 15, Users who are logged in already are redirected
 
