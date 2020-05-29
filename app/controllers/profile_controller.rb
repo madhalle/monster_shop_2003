@@ -4,6 +4,7 @@ class ProfileController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
+    render file: "/public/404" unless current_user
+    @user = User.find(session[:user_id]) if current_user
   end
 end

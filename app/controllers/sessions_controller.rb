@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
   private
 
   def redirect_to_path
-    redirect_to "/profile/#{current_user.id}" if current_user?
+    redirect_to "/profile" if current_user?
     redirect_to '/merchant' if current_merchant?
     redirect_to '/admin' if current_admin?
   end
