@@ -4,7 +4,6 @@ class OrdersController <ApplicationController
   end
 
   def index
-    render file: "/public/404" unless current_admin?
   end
 
   def show
