@@ -25,11 +25,21 @@ class SessionsController < ApplicationController
     end
   end
 
+
   private
 
   def redirect_to_path
     redirect_to "/profile/#{current_user.id}" if current_user?
     redirect_to '/merchant' if current_merchant?
     redirect_to '/admin' if current_admin?
+
+  def destroy
+    session.delete(:user_id)
+    session.delete(:cart)
+    current_user = nil
+    flash[:success] = "You have been logged out"
+
+    redirect_to "/"
+
   end
 end
