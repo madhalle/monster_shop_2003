@@ -4,12 +4,13 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
-
+  delete "/logout", to: "sessions#destroy"
+  
   get "/register", to: "users#new"
 
   get "/profile", to: "profile#index"
   get "/profile/:id", to: "profile#show"
-  
+
   get "/logout", to: "welcome#index"
 
   get "/merchant", to: "merchant#index"
