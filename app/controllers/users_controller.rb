@@ -3,16 +3,18 @@ class UsersController < ApplicationController
   end
 
   def index
+    render file: "/public/404" unless current_admin?
   end
 
   def show
+    render file: "/public/404" unless current_user
   end
 
   def create
     user = User.new(user_params)
     if user.save
       flash[:notice] = 'Success! You are now registered and logged in as a User!'
-      redirect_to '/user/profile'
+      redirect_to '/profile'
     else
       flash[:notice] = user.errors.full_messages.to_sentence
       render "new"

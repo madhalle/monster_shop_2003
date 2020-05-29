@@ -125,7 +125,7 @@ RSpec.describe 'Site Navigation', type: :feature do
         click_link 'My Profile'
       end
 
-      expect(current_path).to eq('/user/profile')
+      expect(current_path).to eq('/profile')
 
       within 'nav' do
         expect(page).to have_content("Logged in as #{@user.name}")
@@ -135,7 +135,7 @@ RSpec.describe 'Site Navigation', type: :feature do
         click_link 'Log Out'
       end
 
-      expect(current_path).to eq('/user/logout')
+      expect(current_path).to eq('/')
     end
 
     it "I can see a cart indicator on all pages" do
@@ -238,7 +238,7 @@ RSpec.describe 'Site Navigation', type: :feature do
       visit "/admin"
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
 
-      visit "/user/profile"
+      visit "/profile"
 
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
     end
