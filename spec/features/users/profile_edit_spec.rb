@@ -14,7 +14,7 @@ describe "As a default user" do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit "/user/profile"
+      visit "/profile"
 
       click_on "Edit Profile"
 

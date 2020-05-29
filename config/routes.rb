@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/", to: "items#index"
+
   get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+
   get "/register", to: "users#new"
 
-  namespace :user do
-    get "/profile", to: "users#show"
-    get "/logout", to: "welcome#index"
-  end
+  # get "/profile", to: "profile#index"
+  get "/profile", to: "profile#show"
+
+  get "/logout", to: "welcome#index"
+
+
 
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
