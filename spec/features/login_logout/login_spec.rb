@@ -80,7 +80,7 @@ RSpec.describe "Login" do
       expect(page).to have_content("Sorry, your credentials are bad.")
     end
 
-    it "As a registered user, I am redirected to my profile page" do
+    it "As a registered user, I see a message indicating I am already logged in" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@registered_user)
 
       visit "/login"
@@ -96,7 +96,7 @@ RSpec.describe "Login" do
       expect(page).to have_content("I am already logged in")
     end
 
-    it "As a merchant, I am redirected to my merchant dashboard page" do
+    it "As a merchant, I see a message indicating I am already logged in" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
 
       visit "/login"
@@ -112,7 +112,7 @@ RSpec.describe "Login" do
       expect(page).to have_content("I am already logged in")
     end
 
-    it "As an admin, I am redirected to my admin dashboard page" do
+    it "As an admin, I see a message indicating I am alreay logged in" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
       visit "/login"
@@ -129,14 +129,3 @@ RSpec.describe "Login" do
     end
   end
 end
-
-# [ ] done
-#
-# User Story 15, Users who are logged in already are redirected
-#
-# As a registered user, merchant, or admin
-# When I visit the login path
-# If I am a regular user, I am redirected to my profile page
-# If I am a merchant user, I am redirected to my merchant dashboard page
-# If I am an admin user, I am redirected to my admin dashboard page
-# And I see a flash message that tells me I am already logged in
