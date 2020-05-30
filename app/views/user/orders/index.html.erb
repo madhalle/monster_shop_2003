@@ -1,7 +1,7 @@
 <h2>All Orders</h2>
 
 <% @orders.each do |order| %>
-  <section id="order-"<%= "#{order.id}" %>>
+  <section id="order-<%=order.id%>">
     <ul>
       <li><%= link_to "Order Id: #{order.id}", "/profile/orders/#{order.id}" %></li>
       <li>Ordered On: <%= order.created_at %></li>
