@@ -5,5 +5,6 @@ FactoryBot.define do
     city { "Duloc City" }
     state { "Duloc State" }
     zip { 10001 }
+    user
   end
 end

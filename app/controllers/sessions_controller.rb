@@ -11,13 +11,15 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = "Welcome, #{user.name}!"
       if current_user?
-        redirect_to "/profile/#{current_user.id}"
+        redirect_to "/profile"
+        flash[:success] = "Welcome, #{user.name}!"
       elsif current_admin?
         redirect_to "/admin"
+        flash[:success] = "Welcome, #{user.name}!"
       elsif current_merchant?
         redirect_to "/merchant"
+        flash[:success] = "Welcome, #{user.name}!"
       end
     else
       flash[:error] = "Sorry, your credentials are bad."
@@ -37,7 +39,7 @@ class SessionsController < ApplicationController
   private
 
   def redirect_to_path
-    redirect_to "/profile/#{current_user.id}" if current_user?
+    redirect_to "/profile" if current_user?
     redirect_to '/merchant' if current_merchant?
     redirect_to '/admin' if current_admin?
   end

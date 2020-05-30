@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 
   get "/register", to: "users#new"
 
-  get "/profile", to: "profile#index"
-  get "/profile/:id", to: "profile#show"
+  get "/profile", to: "profile#show"
+  get "/profile/edit", to: 'profile#edit'
+  get "/profile/orders", to: 'user/orders#index'
 
   get "/logout", to: "welcome#index"
 
@@ -59,6 +60,6 @@ Rails.application.routes.draw do
     get '/', to: "dashboard#index"
   end
 
-  resources :users, only: [:create]
+  resources :users, only: [:create, :update]
 
 end
