@@ -29,4 +29,7 @@ class Item <ApplicationRecord
     Item.joins(:item_orders).select("items.*, sum(quantity) as total_bought").group(:id).order("total_bought DESC").limit(5)
   end
 
+  def self.bottom_five_items
+    Item.joins(:item_orders).select("items.*, sum(quantity) as total_bought").group(:id).order("total_bought").limit(5).reverse
+  end
 end

@@ -1,11 +1,14 @@
-<section id="top_five">
-  <h1>Top Selling Items</h1>
+<section id="top_five_items">
+  <h1>Most Popular Items</h1>
   <% @items.top_five_items.each do |item| %>
     <p><%= item.name %>: <%= item.total_bought %></p>
   <% end %>
 </section>
-<section id="bottom_five">
-
+<section id="bottom_five_items">
+  <h1>Least Popular Items</h1>
+  <% @items.bottom_five_items.each do |item| %>
+    <p><%= item.name %>: <%= item.total_bought %></p>
+  <% end %>
 </section>
 <% if @merchant %>
   <h1><%= link_to @merchant.name, "/merchants/#{@merchant.id}"%><span> Items</span></h1>
