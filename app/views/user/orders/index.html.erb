@@ -1,0 +1,14 @@
+<h2>All Orders</h2>
+
+<% @orders.each do |order| %>
+  <section id="order-"<%= "#{order.id}" %>>
+    <ul>
+      <li><%= link_to "Order Id: #{order.id}", "/profile/orders/#{order.id}" %></li>
+      <li>Ordered On: <%= order.created_at %></li>
+      <li>Updated On: <%= order.updated_at %></li>
+      <li>Order Status: <%= order.status %></li>
+      <li>Unique Items: <%= order.unique_item_count %></li>
+      <li>Total Items: <%= order.total_item_count %></li>
+    </ul>
+  </section>
+<% end %>
