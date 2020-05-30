@@ -32,6 +32,7 @@ describe "As a default user" do
       fill_in :city, with: "Swamp"
       fill_in :password, with: "boom"
       fill_in :password_confirmation, with: "boom"
+
       click_on "Update Profile"
       expect(current_path).to eq("/profile")
       expect(page).to have_content("Your profile has been updated")

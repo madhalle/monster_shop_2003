@@ -3,28 +3,29 @@
 <%= form_tag "/users/#{@user.id}", method: :patch do |f| %>
 
 <%= label_tag :name %>
-<%= text_field_tag :name, nil, value: @user.name %>
+<%= text_field_tag :name, nil, value: @user.name %><br>
 
 <%= label_tag :address %>
-<%= text_field_tag :address, nil, value: @user.address %>
+<%= text_field_tag :address, nil, value: @user.address %><br>
 
 <%= label_tag :city %>
-<%= text_field_tag :city, nil, value: @user.city %>
+<%= text_field_tag :city, nil, value: @user.city %><br>
 
 <%= label_tag :state %>
-<%= text_field_tag :state, nil, value: @user.state %>
+<%= text_field_tag :state, nil, value: @user.state %><br>
 
 <%= label_tag :zip %>
-<%= text_field_tag :zip, nil, value: @user.zip %>
+<%= text_field_tag :zip, nil, value: @user.zip %><br>
 
 <%= label_tag :email %>
-<%= text_field_tag :email, nil, value: @user.email %>
+<%= text_field_tag :email, nil, value: @user.email %><br>
 
+Enter your password to confirm: <br>
 <%= label_tag :password %>
-<%= password_field_tag :password %>
+<%= password_field_tag :password %><br>
 
 <%= label_tag :password_confirmation %>
-<%= password_field_tag :password_confirmation %>
+<%= password_field_tag :password_confirmation %><br>
 
 <%= submit_tag 'Update Profile' %>
 
