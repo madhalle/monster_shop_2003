@@ -68,25 +68,25 @@ describe Item, type: :model do
 
       @order_1 = Order.create(name: "Fiona", address: "123 Top Of The Tower", city: "Duloc City", state: "Duloc State", zip: 10001)
 
+      ItemOrder.create(order_id: @order_1.id, item_id: @fairy.id, price: 50, quantity: 6)
       ItemOrder.create(order_id: @order_1.id, item_id: @tire.id, price: 50, quantity: 10)
       ItemOrder.create(order_id: @order_1.id, item_id: @werewolf.id, price: 50, quantity: 9)
-      ItemOrder.create(order_id: @order_1.id, item_id: @mermaid.id, price: 50, quantity: 8)
       ItemOrder.create(order_id: @order_1.id, item_id: @cthulhu.id, price: 50, quantity: 7)
-      ItemOrder.create(order_id: @order_1.id, item_id: @fairy.id, price: 50, quantity: 6)
-
-      ItemOrder.create(order_id: @order_1.id, item_id: @dragon.id, price: 50, quantity: 5)
-      ItemOrder.create(order_id: @order_1.id, item_id: @griffin.id, price: 50, quantity: 4)
+      ItemOrder.create(order_id: @order_1.id, item_id: @mermaid.id, price: 50, quantity: 8)
       ItemOrder.create(order_id: @order_1.id, item_id: @dog_bone.id, price: 50, quantity: 3)
+      ItemOrder.create(order_id: @order_1.id, item_id: @griffin.id, price: 50, quantity: 4)
       ItemOrder.create(order_id: @order_1.id, item_id: @frankenstein.id, price: 50, quantity: 2)
       ItemOrder.create(order_id: @order_1.id, item_id: @pull_toy.id, price: 50, quantity: 1)
+      ItemOrder.create(order_id: @order_1.id, item_id: @dragon.id, price: 50, quantity: 5)
+
+      @items = Item.all
     end
 
-    it '.top_five_items' do
-      expect(Item.top_five_items).to eq([@tire, @werewolf, @mermaid, @cthulhu, @fairy])
-    end
-
-    it '.bottom_five_items' do
-      expect(Item.bottom_five_items).to eq([@dragon, @griffin, @dog_bone, @frankenstein, @pull_toy])
+    it '.sorted_items' do
+      expect(@items.sorted_items(5, "DESC").first).to eq(@tire)
+      expect(@items.sorted_items(5, "DESC").last).to eq(@fairy)
+      expect(@items.sorted_items(5, "ASC").first).to eq(@pull_toy)
+      expect(@items.sorted_items(5, "ASC").last).to eq(@dragon)
     end
   end
 end

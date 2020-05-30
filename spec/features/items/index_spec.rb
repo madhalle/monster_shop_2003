@@ -89,35 +89,33 @@ RSpec.describe "Items Index Page" do
 
       order_1 = Order.create(name: "Fiona", address: "123 Top Of The Tower", city: "Duloc City", state: "Duloc State", zip: 10001)
 
+      ItemOrder.create(order_id: order_1.id, item_id: fairy.id, price: 50, quantity: 6)
       ItemOrder.create(order_id: order_1.id, item_id: tire.id, price: 50, quantity: 10)
-      ItemOrder.create(order_id: order_1.id, item_id: werewolf.id, price: 50, quantity: 10)
-      ItemOrder.create(order_id: order_1.id, item_id: mermaid.id, price: 50, quantity: 10)
-      ItemOrder.create(order_id: order_1.id, item_id: cthulhu.id, price: 50, quantity: 10)
-      ItemOrder.create(order_id: order_1.id, item_id: fairy.id, price: 50, quantity: 10)
-
-      ItemOrder.create(order_id: order_1.id, item_id: dragon.id, price: 50, quantity: 1)
-      ItemOrder.create(order_id: order_1.id, item_id: griffin.id, price: 50, quantity: 1)
-      ItemOrder.create(order_id: order_1.id, item_id: dog_bone.id, price: 50, quantity: 1)
-      ItemOrder.create(order_id: order_1.id, item_id: frankenstein.id, price: 50, quantity: 1)
+      ItemOrder.create(order_id: order_1.id, item_id: werewolf.id, price: 50, quantity: 9)
+      ItemOrder.create(order_id: order_1.id, item_id: cthulhu.id, price: 50, quantity: 7)
+      ItemOrder.create(order_id: order_1.id, item_id: mermaid.id, price: 50, quantity: 8)
+      ItemOrder.create(order_id: order_1.id, item_id: dog_bone.id, price: 50, quantity: 3)
+      ItemOrder.create(order_id: order_1.id, item_id: griffin.id, price: 50, quantity: 4)
+      ItemOrder.create(order_id: order_1.id, item_id: frankenstein.id, price: 50, quantity: 2)
       ItemOrder.create(order_id: order_1.id, item_id: pull_toy.id, price: 50, quantity: 1)
+      ItemOrder.create(order_id: order_1.id, item_id: dragon.id, price: 50, quantity: 5)
 
       visit '/items'
 
       within "#top_five_items" do
-        expect(page).to have_content("Gatorskins: 10")
-        expect(page).to have_content("Werewolf: 10")
-        expect(page).to have_content("Mermaid: 10")
-        expect(page).to have_content("Cthulhu: 10")
-        expect(page).to have_content("Fairy: 10")
-        expect(page).to_not have_content("Pull Toy: 10")
+        expect("Gatorskins: 10").to appear_before("Werewolf: 9")
+        expect("Werewolf: 9").to appear_before("Mermaid: 8")
+        expect("Mermaid: 8").to appear_before("Cthulhu: 7")
+        expect("Cthulhu: 7").to appear_before("Fairy: 6")
+        expect(page).to_not have_content("Pull Toy: 1")
       end
 
       within "#bottom_five_items" do
-        expect(page).to have_content("Dragon: 1")
-        expect(page).to have_content("Griffin: 1")
-        expect(page).to have_content("Dog Bone: 1")
-        expect(page).to have_content("Frankenstein: 1")
-        expect(page).to have_content("Pull Toy: 1")
+        expect("Pull Toy: 1").to appear_before("Frankenstein: 2")
+        expect("Frankenstein: 2").to appear_before("Dog Bone: 3")
+        expect("Dog Bone: 3").to appear_before("Griffin: 4")
+        expect("Griffin: 4").to appear_before("Dragon: 5")
+        expect(page).to_not have_content("Gatorskins: 10")
       end
     end
   end
