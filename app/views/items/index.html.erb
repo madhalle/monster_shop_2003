@@ -1,12 +1,12 @@
 <section id="top_five_items">
   <h1>Most Popular Items</h1>
-  <% @items.top_five_items.each do |item| %>
+  <% @items.sorted_items(5, "DESC").each do |item| %>
     <p><%= item.name %>: <%= item.total_bought %></p>
   <% end %>
 </section>
 <section id="bottom_five_items">
   <h1>Least Popular Items</h1>
-  <% @items.bottom_five_items.each do |item| %>
+  <% @items.sorted_items(5, "ASC").each do |item| %>
     <p><%= item.name %>: <%= item.total_bought %></p>
   <% end %>
 </section>
