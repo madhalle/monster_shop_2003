@@ -25,14 +25,14 @@ describe "As a default user" do
        @orders = create_list(:order, 3, user_id: @user.id)
        @items = create_list(:item, 3)
 
-       ItemOrder.create(order_id: @orders[0].id, item_id: @items[0].id, price: 2, quantity: 1)
-       ItemOrder.create(order_id: @orders[0].id, item_id: @items[1].id, price: 2, quantity: 1)
-       ItemOrder.create(order_id: @orders[0].id, item_id: @items[2].id, price: 2, quantity: 1)
+       ItemOrder.create(order_id: @orders[0].id, item_id: @items[0].id, quantity: 1)
+       ItemOrder.create(order_id: @orders[0].id, item_id: @items[1].id, quantity: 1)
+       ItemOrder.create(order_id: @orders[0].id, item_id: @items[2].id, quantity: 1)
 
-       ItemOrder.create(order_id: @orders[1].id, item_id: @items[0].id, price: 2, quantity: 1)
-       ItemOrder.create(order_id: @orders[1].id, item_id: @items[1].id, price: 2, quantity: 1)
+       ItemOrder.create(order_id: @orders[1].id, item_id: @items[0].id, quantity: 1)
+       ItemOrder.create(order_id: @orders[1].id, item_id: @items[1].id, quantity: 1)
 
-       ItemOrder.create(order_id: @orders[2].id, item_id: @items[0].id, price: 2, quantity: 2)
+       ItemOrder.create(order_id: @orders[2].id, item_id: @items[0].id, quantity: 2)
 
     end
 

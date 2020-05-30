@@ -1,7 +1,6 @@
 class User::OrdersController < User::BaseController
 
   def index
-    binding.pry
-    @orders = Order.all
+    @orders = User.find(session[:user_id]).orders
   end
 end
