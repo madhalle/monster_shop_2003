@@ -1,5 +1,8 @@
 <section id="top_five">
-
+  <h1>Top Selling Items</h1>
+  <% @items.top_five_items.each do |item| %>
+    <p><%= item.name %>: <%= item.total_bought %></p>
+  <% end %>
 </section>
 <section id="bottom_five">
 
