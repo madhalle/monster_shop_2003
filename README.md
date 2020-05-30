@@ -325,7 +325,7 @@ And I see a flash message that tells me I am already logged in
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 16, User can log out
 
@@ -342,7 +342,7 @@ Any items I had in my shopping cart are deleted
 This is the main "catalog" page of the entire site where users will start their e-commerce experience. Visitors to the site, and regular users, will be able to view an index page of all items available for purchase and some basic statistics. Each item will also have a "show" page where more information is shown.
 
 ```
-[ ] done
+[x] done
 
 User Story 17, Items Index Page
 
