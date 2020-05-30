@@ -105,6 +105,7 @@ RSpec.describe "Items Index Page" do
 
       within "#top_five" do
         expect(page).to have_content("Gatorskins: 10")
+        expect(page).to have_content("Werewolf: 10")
         expect(page).to have_content("Mermaid: 10")
         expect(page).to have_content("Cthulhu: 10")
         expect(page).to have_content("Fairy: 10")
