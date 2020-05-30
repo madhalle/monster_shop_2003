@@ -98,6 +98,12 @@ RSpec.describe 'Site Navigation', type: :feature do
                          role: 0)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      visit '/login'
+
+      fill_in :email, with:"p.fiona12@castle.co"
+      fill_in :password, with:"boom"
+
+      click_button "Log In"
     end
 
     it "I see a nav bar with links to all pages" do
