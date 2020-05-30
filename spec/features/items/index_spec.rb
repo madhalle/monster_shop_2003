@@ -82,8 +82,8 @@ RSpec.describe "Items Index Page" do
       mermaid = meg.items.create(name: "Mermaid", description: "Be a mermaid from the comfort of your own home.", price: 60, image: "https://secure.img1-fg.wfcdn.com/im/59218715/resize-h800-w800%5Ecompr-r85/9053/90537369/Rosas+Kids+Mermaid+Tail+Blanket.jpg", inventory: 60)
 
       pull_toy = brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 30)
-      dog_bone = brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 20, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 20)
-      frankenstein = brian.items.create(name: "Frankenstein", description: "Great read!", price: 20, image: "https://i.ebayimg.com/images/g/4A8AAOSwj9RenuF5/s-l300.jpg", active?:false, inventory: 20)
+      dog_bone = brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 20, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", inventory: 20)
+      frankenstein = brian.items.create(name: "Frankenstein", description: "Great read!", price: 20, image: "https://i.ebayimg.com/images/g/4A8AAOSwj9RenuF5/s-l300.jpg", inventory: 20)
       cthulhu = brian.items.create(name: "Cthulhu", description: "Great gift!", price: 20, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQP11jyikd5WuCr4Ag4RK5uCn0NMoIee3IhkW3ZQV9w0-7MKSIA&usqp=CAU", inventory: 20)
       fairy = brian.items.create(name: "Fairy", description: "Sprinkle a little and spread your wings", price: 20, image: "https://i.etsystatic.com/6759919/r/il/806b42/1188540485/il_570xN.1188540485_fbhk.jpg", inventory: 20)
 
@@ -103,7 +103,7 @@ RSpec.describe "Items Index Page" do
 
       visit '/items'
 
-      within "#top_five" do
+      within "#top_five_items" do
         expect(page).to have_content("Gatorskins: 10")
         expect(page).to have_content("Werewolf: 10")
         expect(page).to have_content("Mermaid: 10")
@@ -112,27 +112,13 @@ RSpec.describe "Items Index Page" do
         expect(page).to_not have_content("Pull Toy: 10")
       end
 
-      # within "#bottom_five" do
-      #   expect(page).to_not have_content("Pull Toy: 1")
-      #   expect(page).to have_content("Dragon: 1")
-      #   expect(page).to have_content("Griffin: 1")
-      #   expect(page).to have_content("Dog Bone: 1")
-      #   expect(page).to have_content("Frankenstein: 1")
-      # end
+      within "#bottom_five_items" do
+        expect(page).to have_content("Dragon: 1")
+        expect(page).to have_content("Griffin: 1")
+        expect(page).to have_content("Dog Bone: 1")
+        expect(page).to have_content("Frankenstein: 1")
+        expect(page).to have_content("Pull Toy: 1")
+      end
     end
   end
 end
-
-
-
-# [ ] done
-#
-# User Story 18, Items Index Page Statistics
-#
-# As any kind of user on the system
-# When I visit the items index page ("/items")
-# I see an area with statistics:
-# - the top 5 most popular items by quantity purchased, plus the quantity bought
-# - the bottom 5 least popular items, plus the quantity bought
-#
-# "Popularity" is determined by total quantity of that item ordered
