@@ -19,7 +19,7 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_link(@tire.merchant.name)
       expect(page).to have_link(@pull_toy.name)
       expect(page).to have_link(@pull_toy.merchant.name)
-      expect(page).to have_link(@dog_bone.name)
+      expect(page).to_not have_link(@dog_bone.name)
       expect(page).to have_link(@dog_bone.merchant.name)
     end
 
@@ -47,15 +47,26 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_css("img[src*='#{@pull_toy.image}']")
       end
 
-      within "#item-#{@dog_bone.id}" do
-        expect(page).to have_link(@dog_bone.name)
-        expect(page).to have_content(@dog_bone.description)
-        expect(page).to have_content("Price: $#{@dog_bone.price}")
-        expect(page).to have_content("Inactive")
-        expect(page).to have_content("Inventory: #{@dog_bone.inventory}")
-        expect(page).to have_link(@brian.name)
-        expect(page).to have_css("img[src*='#{@dog_bone.image}']")
-      end
+        expect(page).to_not have_css("#item-#{@dog_bone.id}")
+    end
+
+    it "Visitors and Users can only view active items" do
+      user = User.create(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: "p.fiona12@castle.co",
+                         password: "boom",
+                         role: 0)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit "/items"
+
+      expect(page).to have_content(@tire.name)
+      expect(page).to have_content(@pull_toy.name)
+      expect(page).to_not have_content(@dog_bone.name)
     end
   end
 end
