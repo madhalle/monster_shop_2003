@@ -38,14 +38,14 @@ describe "As a default user" do
 
     it "I can see every order I've made" do
       visit "/profile/orders"
-  
+
       within("#order-#{@orders[0].id}") do
         expect(page).to have_link("#{@orders[0].id}")
         expect(page).to have_content("Ordered On: #{@orders[0].created_at}")
         expect(page).to have_content("Updated On: #{@orders[0].updated_at}")
         expect(page).to have_content("Order Status: #{@orders[0].status}")
         expect(page).to have_content("Unique Items: 3")
-        expect(page).to have_content("Total Items: 3")
+        expect(page).to have_content("Grand Total: 6")
       end
       within("#order-#{@orders[1].id}") do
         expect(page).to have_link("#{@orders[1].id}")
@@ -53,7 +53,7 @@ describe "As a default user" do
         expect(page).to have_content("Updated On: #{@orders[1].updated_at}")
         expect(page).to have_content("Order Status: #{@orders[1].status}")
         expect(page).to have_content("Unique Items: 2")
-        expect(page).to have_content("Total Items: 2")
+        expect(page).to have_content("Grand Total: 4")
       end
       within("#order-#{@orders[2].id}") do
         expect(page).to have_link("#{@orders[2].id}")
@@ -61,7 +61,7 @@ describe "As a default user" do
         expect(page).to have_content("Updated On: #{@orders[2].updated_at}")
         expect(page).to have_content("Order Status: #{@orders[2].status}")
         expect(page).to have_content("Unique Items: 1")
-        expect(page).to have_content("Total Items: 2")
+        expect(page).to have_content("Grand Total: 4")
       end
     end
   end
