@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/profile", to: "profile#show"
   get "/profile/edit", to: 'profile#edit'
   get "/profile/orders", to: 'user/orders#index'
+  get "/profile/orders/:order_id", to: "user/orders#show"
 
   get "/logout", to: "welcome#index"
 
