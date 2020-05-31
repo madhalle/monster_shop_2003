@@ -25,4 +25,7 @@ class Item <ApplicationRecord
     item_orders.empty?
   end
 
+  def self.sorted_items(limit, order)
+    joins(:item_orders).select("items.*, sum(quantity) as total_bought").group(:id).order("sum(quantity) #{order}").limit(limit)
+  end
 end
