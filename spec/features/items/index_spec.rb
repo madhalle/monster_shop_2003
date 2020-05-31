@@ -73,6 +73,15 @@ RSpec.describe "Items Index Page" do
   end
   describe "visiting the items index page as any type of visitor" do
     it "I can see a section with item statistics" do
+      user = User.create(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: "p.fiona12@castle.co",
+                         password: "boom",
+                         role: 0)
+
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
@@ -88,7 +97,7 @@ RSpec.describe "Items Index Page" do
       cthulhu = brian.items.create(name: "Cthulhu", description: "Great gift!", price: 20, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQP11jyikd5WuCr4Ag4RK5uCn0NMoIee3IhkW3ZQV9w0-7MKSIA&usqp=CAU", inventory: 20)
       fairy = brian.items.create(name: "Fairy", description: "Sprinkle a little and spread your wings", price: 20, image: "https://i.etsystatic.com/6759919/r/il/806b42/1188540485/il_570xN.1188540485_fbhk.jpg", inventory: 20)
 
-      order_1 = Order.create(name: "Fiona", address: "123 Top Of The Tower", city: "Duloc City", state: "Duloc State", zip: 10001)
+      order_1 = Order.create(name: "Fiona", address: "123 Top Of The Tower", city: "Duloc City", state: "Duloc State", zip: 10001, user_id: user.id)
 
       ItemOrder.create(order_id: order_1.id, item_id: fairy.id, price: 50, quantity: 6)
       ItemOrder.create(order_id: order_1.id, item_id: tire.id, price: 50, quantity: 10)
