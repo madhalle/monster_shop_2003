@@ -26,10 +26,10 @@ describe "As a default user" do
        fill_in :email, with:"p.fiona12@castle.co"
        fill_in :password, with:"boom"
 
-       click_button "Log In"
     end
 
-    it "I can edit my profile" do
+    xit "I can edit my profile" do
+      click_button "Log In"
 
       visit "/profile"
 
@@ -47,7 +47,8 @@ describe "As a default user" do
       expect(page).to have_content("City: Swamp")
     end
 
-    it "will return error flash if email is already taken" do
+    xit "will return error flash if email is already taken" do
+      click_button "Log In"
 
       visit "/profile"
 
@@ -64,37 +65,23 @@ describe "As a default user" do
       expect(page).to have_content("Email has already been taken")
     end
 
-    xit "I can edit my password" do
+     it "I can edit my password" do
+      click_button "Log In"
 
       visit "/profile"
 
       click_on "Change Password"
 
-      expect(current_path).to eq("/password/change")
+      expect(current_path).to eq("/profile/edit_password")
 
 
-      fill_in :password, with: "boom"
-      fill_in :password_confirmation, with: "boom"
+      fill_in :new_password, with: "booom"
+      fill_in :new_password_confirmation, with: "booom"
 
       click_on "Update Password"
-      expect(current_path).to eq("/profile")
       expect(page).to have_content("Your password has been updated")
+      expect(current_path).to eq("/profile")
+
     end
   end
 end
-#
-# ```
-# [ ] done
-#
-# User Story 21, User Can Edit their Password
-#
-# As a registered user
-# When I visit my profile page
-# I see a link to edit my password
-# When I click on the link to edit my password
-# I see a form with fields for a new password, and a new password confirmation
-# When I fill in the same password in both fields
-# And I submit the form
-# Then I am returned to my profile page
-# And I see a flash message telling me that my password is updated
-# ```
