@@ -28,7 +28,7 @@ describe "As a default user" do
 
     end
 
-    xit "I can edit my profile" do
+    it "I can edit my profile" do
       click_button "Log In"
 
       visit "/profile"
@@ -47,7 +47,7 @@ describe "As a default user" do
       expect(page).to have_content("City: Swamp")
     end
 
-    xit "will return error flash if email is already taken" do
+    it "will return error flash if email is already taken" do
       click_button "Log In"
 
       visit "/profile"

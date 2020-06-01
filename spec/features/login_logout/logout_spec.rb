@@ -42,7 +42,6 @@ RSpec.describe "when a user visits the log out path" do
 
     # visit "/logout"
     expect(page).to have_content("You have been logged out")
-    expect(page).to_not have_content("Log Out")
     expect(page).to have_content("Cart: 0")
 
   end

@@ -20,12 +20,23 @@ RSpec.describe 'Cart show' do
 
     it 'Theres a link to checkout' do
       visit "/cart"
-
+      login_user
       expect(page).to have_link("Checkout")
 
       click_on "Checkout"
 
       expect(current_path).to eq("/orders/new")
+    end
+    describe 'When I am not logged in and visit cart' do
+      it 'I get prompted to log in or register' do
+        visit "/cart"
+
+        click_on "Checkout"
+
+        expect(page).to have_content("You must log in or register to complete checkout")
+        expect(page).to have_link("Register")
+        expect(page).to have_link("Log in")
+      end
     end
   end
 
@@ -54,4 +65,5 @@ RSpec.describe 'Cart show' do
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
     end
   end
+
 end
