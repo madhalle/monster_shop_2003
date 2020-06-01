@@ -41,6 +41,29 @@ RSpec.describe 'Cart show' do
         expect(current_path).to eq("/register")
       end
     end
+    it 'A registered user can checkout' do
+      visit "/cart"
+      login_user
+      expect(page).to have_link("Checkout")
+
+      click_on "Checkout"
+
+      expect(current_path).to eq("/orders/new")
+      fill_in :name, with: "Shrek"
+      fill_in :address, with:"123 swamp city"
+      fill_in :city, with: "Duloc City"
+      fill_in :state, with: "Duloc State"
+      fill_in :zip, with: 10001
+
+      click_on 'Create Order'
+      order = Order.last
+      expect(order.status).to eq("pending")
+      expect(current_path).to eq("/profile/orders")
+      expect(page).to have_content("Your order has been created")
+      expect(page).to have_content("Order #{order.id}")
+      expect(page).to have_content("Cart: 0")
+
+    end
   end
 
   describe 'When I havent added items to my cart' do
