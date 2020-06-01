@@ -43,7 +43,7 @@ describe "An orders status will be updated when" do
       expect(@orders[0].status).to eq("pending")
       item_order.update_attributes!(status: "fulfilled")
     end
-
+    @orders[0].package
     expect(@orders[0].status).to eq("packaged")
   end
 end
