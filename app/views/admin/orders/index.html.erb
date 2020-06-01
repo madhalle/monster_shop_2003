@@ -9,9 +9,6 @@
           <li><%= link_to "User: #{order.name}", "/admin/users/#{order.user_id}" %></li>
           <li>Order Id: <%= order.id %></li>
           <li>Ordered On: <%= order.created_at %></li>
-          <li>
-            <%= link_to "ship", "/admin/orders/#{order.id}/ship", method: :patch %>
-          </li>
         </ul>
       </section>
     <% end %>

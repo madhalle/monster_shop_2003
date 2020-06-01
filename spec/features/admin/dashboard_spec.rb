@@ -114,37 +114,5 @@ describe "As an Admin" do
 
       expect(current_path).to eq("/admin/users/#{@orders[0].user_id}")
     end
-
-    it "I can 'ship' packaged orders" do
-      packaged_orders = create_list(:order, 3, user_id: @user.id, status: "packaged")
-      shipped_orders = create_list(:order, 3, user_id: @user.id, status: "shipped")
-      cancelled_orders = create_list(:order, 3, user_id: @user.id, status: "cancelled")
-
-      visit "/admin"
-
-      within("#order-#{@orders[0].id}") do
-        expect(page).to_not have_button("ship")
-      end
-
-      within("#order-#{shipped_orders[0].id}") do
-        expect(page).to_not have_button("ship")
-      end
-
-      within("#order-#{cancelled_orders[0].id}") do
-        expect(page).to_not have_button("ship")
-      end
-
-      within("#order-#{packaged_orders[0].id}") do
-        click_on "ship"
-      end
-
-      within("#order-#{packaged_orders[1].id}") do
-        click_on "ship"
-      end
-
-      expect(packaged_orders[0].reload.status).to eq("shipped")
-      expect(packaged_orders[1].reload.status).to eq("shipped")
-      expect(packaged_orders[2].status).to eq("packaged")
-    end
   end
 end
