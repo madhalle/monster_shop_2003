@@ -56,6 +56,21 @@ RSpec.describe 'Cart show' do
         expect(page).to have_content("Total: $124")
       end
     end
+
+    it "I can increment and decrease the count of items by clicking a button"
+    visit '/cart'
+
+    @items_in_cart.each do |item|
+      within "#cart-item-#{item.id}" do
+        click_on "Add 1 to Quantity"
+        expect(page).to have_content("2")
+        click_on "Add 1 to Quantity"
+        expect(page).to have_content("3")
+        click_on "Remove 1 from Quantity"
+        expect(page).to have_content("2")
+      end
+    end
+
   end
   describe "When I haven't added anything to my cart" do
     describe "and visit my cart show page" do
@@ -73,3 +88,21 @@ RSpec.describe 'Cart show' do
     end
   end
 end
+
+# User Story 23, Adding Item Quantity to Cart
+#
+# As a visitor
+# When I have items in my cart
+# And I visit my cart
+# Next to each item in my cart
+# I see a button or link to increment the count of items I want to purchase
+# I cannot increment the count beyond the item's inventory size
+
+# User Story 24, Decreasing Item Quantity from Cart
+#
+# As a visitor
+# When I have items in my cart
+# And I visit my cart
+# Next to each item in my cart
+# I see a button or link to decrement the count of items I want to purchase
+# If I decrement the count to 0 the item is immediately removed from my cart
