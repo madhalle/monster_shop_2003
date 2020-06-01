@@ -20,5 +20,10 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  def update
+    require "pry"; binding.pry
+    redirect_to '/cart'
+  end
+
 
 end
