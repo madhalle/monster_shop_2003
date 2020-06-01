@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/profile/edit", to: 'profile#edit'
   get "/profile/edit_password", to: 'profile#edit_password'
   get "/profile/orders", to: 'user/orders#index'
+  get "/profile/orders/:order_id", to: "user/orders#show"
 
   get "/logout", to: "welcome#index"
 
