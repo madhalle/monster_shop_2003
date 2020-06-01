@@ -40,20 +40,20 @@ describe "As an Admin" do
       visit "/admin"
 
       within("#order-#{@orders[0].id}") do
-        expect(page).to have_link("#{@orders[0].id}")
+        expect(page).to have_link("#{@orders[0].name}")
+        expect(page).to have_content("Order Id: #{@orders[0].id}")
         expect(page).to have_content("Ordered On: #{@orders[0].created_at}")
-        expect(page).to have_content("Order Status: #{@orders[0].status}")
       end
       within("#order-#{@orders[1].id}") do
-        expect(page).to have_link("#{@orders[1].id}")
+        expect(page).to have_link("#{@orders[1].name}")
+        expect(page).to have_content("Order Id: #{@orders[1].id}")
         expect(page).to have_content("Ordered On: #{@orders[1].created_at}")
-        expect(page).to have_content("Order Status: #{@orders[1].status}")
 
       end
       within("#order-#{@orders[2].id}") do
-        expect(page).to have_link("#{@orders[2].id}")
+        expect(page).to have_link("#{@orders[2].name}")
+        expect(page).to have_content("Order Id: #{@orders[2].id}")
         expect(page).to have_content("Ordered On: #{@orders[2].created_at}")
-        expect(page).to have_content("Order Status: #{@orders[2].status}")
       end
     end
 
@@ -85,9 +85,9 @@ describe "As an Admin" do
       end
 
       within("#shipped-orders") do
-        expect(page).to have_content(shiped_orders[0].id)
-        expect(page).to have_content(shiped_orders[1].id)
-        expect(page).to have_content(shiped_orders[2].id)
+        expect(page).to have_content(shipped_orders[0].id)
+        expect(page).to have_content(shipped_orders[1].id)
+        expect(page).to have_content(shipped_orders[2].id)
 
         expect(page).to_not have_content(packaged_orders[0].id)
         expect(page).to_not have_content(@orders[0].id)
@@ -108,7 +108,9 @@ describe "As an Admin" do
     it "For an order the user's name links to the admin view of the user's profile" do
       visit "/admin"
 
-      click_on @orders[0].name
+      within("#order-#{@orders[0].id}") do
+        click_on @orders[0].name
+      end
 
       expect(current_path).to eq("/admin/users/#{@orders[0].user_id}")
     end
