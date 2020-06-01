@@ -37,7 +37,7 @@ describe "An orders status will be updated when" do
 
   it "All items in the order have been 'fulfilled'" do
     expect(@orders[0].status).to eq("pending")
-
+    
     @orders[0].item_orders.each do |item_order|
       expect(item_order.status).to eq("unfulfilled")
       expect(@orders[0].status).to eq("pending")
