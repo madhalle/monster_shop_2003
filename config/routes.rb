@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get "/register", to: "users#new"
 
   get "/profile", to: "profile#show"
+  patch "/profile", to: "profile#show"
   get "/profile/edit", to: 'profile#edit'
+  get "/profile/edit_password", to: 'profile#edit_password'
   get "/profile/orders", to: 'user/orders#index'
   get "/profile/orders/:order_id", to: "user/orders#show"
 

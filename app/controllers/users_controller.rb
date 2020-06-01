@@ -23,13 +23,20 @@ class UsersController < ApplicationController
   end
 
   def update
-  user = User.find(params[:id])
-    if user.authenticate(params[:password])
+    user = User.find(params[:id])
+    if params[:new_password]
+      user.update!(password: params[:new_password])
+      flash[:notice] = "Your password has been updated"
+      redirect_to "/profile"
+    elsif user.authenticate(params[:password])
       if user.update(user_params)
         flash[:notice] = "Your profile has been updated"
+        redirect_to "/profile"
+      else
+        flash[:notice] = user.errors.full_messages.to_sentence
+        redirect_to "/profile/edit"
       end
     end
-    redirect_to "/profile"
   end
   private
 

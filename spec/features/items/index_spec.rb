@@ -69,8 +69,8 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_content(@pull_toy.name)
       expect(page).to_not have_content(@dog_bone.name)
     end
-
   end
+
   describe "visiting the items index page as any type of visitor" do
 
     it "I can see a section with item statistics" do
