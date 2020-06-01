@@ -25,7 +25,9 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
 end
-
+group :test do
+  gem "nyan-cat-formatter"
+end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
