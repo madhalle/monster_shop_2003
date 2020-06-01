@@ -69,3 +69,14 @@ RSpec.configure do |config|
     end
   end
 end
+def login_user
+  @user = User.create(name: "Shrek",
+                     address: "123 Top Of The Tower",
+                     city: "Duloc City",
+                     state: "Duloc State",
+                     zip: 10001,
+                     email: "bigshrek12@castle.co",
+                     password: "boom",
+                     role: 0)
+  allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+end

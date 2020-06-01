@@ -4,5 +4,6 @@ class User::UsersController < User::BaseController
   end
 
   def show
+    @user = User.find(session[:user_id])
   end
 end
