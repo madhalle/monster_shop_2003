@@ -55,19 +55,20 @@ RSpec.describe 'Cart show' do
 
         expect(page).to have_content("Total: $124")
       end
-    end
 
-    it "I can increment and decrease the count of items by clicking a button"
-    visit '/cart'
+      it 'I can increase and decrease the quantity of items Ive added to my cart' do
+        visit '/cart'
 
-    @items_in_cart.each do |item|
-      within "#cart-item-#{item.id}" do
-        click_on "Add 1 to Quantity"
-        expect(page).to have_content("2")
-        click_on "Add 1 to Quantity"
-        expect(page).to have_content("3")
-        click_on "Remove 1 from Quantity"
-        expect(page).to have_content("2")
+        @items_in_cart.each do |item|
+          within "#cart-item-#{item.id}" do
+            click_on "Add 1 to Quantity"
+            expect(page).to have_content("2")
+            click_on "Add 1 to Quantity"
+            expect(page).to have_content("3")
+            click_on "Remove 1 from Quantity"
+            expect(page).to have_content("2")
+          end
+        end
       end
     end
 
