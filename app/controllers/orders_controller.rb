@@ -1,6 +1,10 @@
 class OrdersController <ApplicationController
 
   def new
+    unless current_user?
+      flash[:notice] = "You must log in or register to complete checkout"
+      redirect_to "/cart"
+    end
   end
 
   def index

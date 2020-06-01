@@ -47,31 +47,38 @@ RSpec.describe "As a visitor" do
       order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user_id: user.id)
       order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
 
-      # visit "/items/#{paper.id}"
-      # click_on "Add To Cart"
-      # visit "/items/#{paper.id}"
-      # click_on "Add To Cart"
-      # visit "/items/#{tire.id}"
-      # click_on "Add To Cart"
-      # visit "/items/#{pencil.id}"
-      # click_on "Add To Cart"
-      #
-      # visit "/cart"
-      # click_on "Checkout"
-      #
-      # name = "Bert"
-      # address = "123 Sesame St."
-      # city = "NYC"
-      # state = "New York"
-      # zip = 10001
-      #
-      # fill_in :name, with: name
-      # fill_in :address, with: address
-      # fill_in :city, with: city
-      # fill_in :state, with: state
-      # fill_in :zip, with: zip
-      #
-      # click_button "Create Order"
+      visit '/login'
+
+      fill_in :email, with:"p.fiona12@castle.co"
+      fill_in :password, with:"boom"
+
+      click_button "Log In"
+
+      visit "/items/#{paper.id}"
+      click_on "Add To Cart"
+      visit "/items/#{paper.id}"
+      click_on "Add To Cart"
+      visit "/items/#{tire.id}"
+      click_on "Add To Cart"
+      visit "/items/#{pencil.id}"
+      click_on "Add To Cart"
+
+      visit "/cart"
+      click_on "Checkout"
+
+      name = "Bert"
+      address = "123 Sesame St."
+      city = "NYC"
+      state = "New York"
+      zip = 10001
+
+      fill_in :name, with: name
+      fill_in :address, with: address
+      fill_in :city, with: city
+      fill_in :state, with: state
+      fill_in :zip, with: zip
+
+      click_button "Create Order"
 
       visit "/merchants/#{meg.id}"
       expect(page).to_not have_link("Delete Merchant")
