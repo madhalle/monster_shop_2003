@@ -26,4 +26,8 @@ class Order <ApplicationRecord
       update(status: "packaged")
     end
   end
+
+  def self.sort_by_status
+    all.to_a.group_by { |order| order.status}
+  end
 end
