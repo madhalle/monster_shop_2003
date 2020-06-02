@@ -24,4 +24,33 @@ RSpec.describe 'merchant index page', type: :feature do
       expect(current_path).to eq("/merchants/new")
     end
   end
+
+  describe 'As an admin' do
+    before :each do
+      @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 80203)
+      @dog_shop = Merchant.create(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
+    end
+
+    it 'I can click on a merchant name and go to their merchant dashboard' do
+      visit '/merchants'
+      click_on "Brian's Bike Shop"
+
+      expect(current_path).to eq("/admin/merchants/#{@bike_shop.id}")
+      expect(page).to have_content(@bike_shop.name)
+      expect(page).to have_content(@bike_shop.address)
+      expect(page).to have_content(@bike_shop.city)
+      expect(page).to have_content(@bike_shop.state)
+      expect(page).to have_content(@bike_shop.zip)
+
+      visit '/merchants'
+      click_on "Meg's Dog Shop"
+
+      expect(current_path).to eq("/admin/merchants/#{@dog_shop.id}")
+      expect(page).to have_content(@dog_shop.name)
+      expect(page).to have_content(@dog_shop.address)
+      expect(page).to have_content(@dog_shop.city)
+      expect(page).to have_content(@dog_shop.state)
+      expect(page).to have_content(@dog_shop.zip)
+    end
+  end
 end
