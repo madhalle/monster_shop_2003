@@ -38,15 +38,15 @@ RSpec.describe "Admin Merchants Index Page", type: :feature do
     it "can disable merchants who are not yet disabled" do
       visit "/admin/merchants"
 
-      within "#merchant_#{@meg.id}" do
+      within "#merchant#{@meg.id}" do
         expect(page).to have_button("Disable")
       end
 
-      within "#merchant_#{@mike.id}" do
+      within "#merchant#{@mike.id}" do
         expect(page).to have_button("Disable")
       end
 
-      within "#merchant_#{@brian.id}" do
+      within "#merchant#{@brian.id}" do
         expect(page).to have_button("Disable")
         click_button "Disable"
       end
@@ -54,11 +54,6 @@ RSpec.describe "Admin Merchants Index Page", type: :feature do
       expect(current_path).to eq("/admin/merchants")
       expect(page).to have_content("#{@brian.name}'s account has been disabled.")
 
-      within "#merchant_#{@brian.id}" do
-        expect(page).to have_button("Enable")
-      end
-      # User Story 38, Admin disables a merchant account
-      #
       # As an admin
       # When I visit the admin's merchant index page ('/admin/merchants')
       # I see a "disable" button next to any merchants who are not yet disabled
@@ -66,17 +61,38 @@ RSpec.describe "Admin Merchants Index Page", type: :feature do
       # I am returned to the admin's merchant index page where I see that the merchant's account is now disabled
       # And I see a flash message that the merchant's account is now disabled
     end
+
+    it "can disable all merchant items if merchant is disabled" do
+      visit "/admin/merchants"
+
+      expect(@tire.active?).to eq(true)
+      expect(@dragon.active?).to eq(true)
+      expect(@pull_toy.active?).to eq(true)
+      expect(@dog_bone.active?).to eq(true)
+
+      within "#merchant_#{@brian.id}" do
+        click_button "Disable"
+      end
+
+      @tire.reload
+      @dragon.reload
+      @pull_toy.reload
+      @dog_bone.reload
+
+      expect(@tire.active?).to eq(true)
+      expect(@dragon.active?).to eq(false)
+      expect(@pull_toy.active?).to eq(true)
+      expect(@dog_bone.active?).to eq(false)
+    end
+    # User Story 39, Disabled Merchant Item's are inactive
+    #
+    # As an admin
+    # When I visit the merchant index page
+    # And I click on the "disable" button for an enabled merchant
+    # Then all of that merchant's items should be deactivated
   end
 end
 
-
-
-# User Story 39, Disabled Merchant Item's are inactive
-#
-# As an admin
-# When I visit the merchant index page
-# And I click on the "disable" button for an enabled merchant
-# Then all of that merchant's items should be deactivated
 
 # User Story 40, Admin enables a merchant account
 #
