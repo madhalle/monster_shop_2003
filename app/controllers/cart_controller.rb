@@ -20,9 +20,19 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
-  def update
-    require "pry"; binding.pry
+  def increase_quantity
+    item = Item.find(params[:item_id])
+    cart.contents["#{item.id}"] += 1
     redirect_to '/cart'
+  end
+
+  def decrease_quantity
+    cart.contents["#{params[:item_id]}"] -= 1
+    if cart.contents["#{params[:item_id]}"] == 0
+      remove_item
+    else
+      redirect_to '/cart'
+    end
   end
 
 
