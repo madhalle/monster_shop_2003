@@ -13,12 +13,14 @@ RSpec.describe "when logged in as a merchant employee" do
                        role: 1)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-
   end
   it "I will see name & address of merchant I work for on my dashboard" do
-    visit "/merchant"
+     visit "/merchant"
      expect(page).to have_content(@bike_shop.name)
-     expect(page).to have_content(@bike_shop.full_address)
+     expect(page).to have_content(@bike_shop.address)
+     expect(page).to have_content(@bike_shop.city)
+     expect(page).to have_content(@bike_shop.state)
+     expect(page).to have_content(@bike_shop.zip)
   end
 end
 # ```
