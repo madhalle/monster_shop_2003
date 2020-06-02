@@ -90,6 +90,7 @@ describe "As a Merchant Employee" do
 
       within("#item-#{@items_merch1[0].id}") do
         expect(page).to have_content("Status: fulfilled")
+        expect(page).to_not have_link("fulfill")
       end
 
       expect(@items_merch1[0].reload.inventory).to eq(2)
