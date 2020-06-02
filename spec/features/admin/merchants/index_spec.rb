@@ -66,6 +66,10 @@ RSpec.describe "Admin Merchants Index Page", type: :feature do
       # I am returned to the admin's merchant index page where I see that the merchant's account is now disabled
       # And I see a flash message that the merchant's account is now disabled
     end
+  end
+end
+
+
 
 # User Story 39, Disabled Merchant Item's are inactive
 #
