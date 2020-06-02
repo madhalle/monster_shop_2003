@@ -55,6 +55,15 @@ describe Item, type: :model do
       order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
       expect(@chain.no_orders?).to eq(false)
     end
+
+    it '#modify_inventory' do
+      expect(@chain.inventory).to eq(5)
+      @chain.modify_inventory({type: :decrease, quantity: 3})
+      expect(@chain.inventory).to eq(2)
+
+      @chain.modify_inventory({type: :increase, quantity: 6})
+      expect(@chain.inventory).to eq(8)
+    end
   end
 
   describe 'class methods' do
