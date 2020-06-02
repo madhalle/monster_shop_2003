@@ -59,6 +59,7 @@ RSpec.describe 'user new page', type: :feature do
       fill_in :password_confirmation, with:""
 
       click_button 'Create User'
+  
 
       expect(page).to have_content("Password confirmation doesn't match Password and Zip can't be blank")
     end

@@ -32,6 +32,8 @@
         <center>
           <p><%=quantity%></p>
           <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
+          <p><%= link_to "Add 1 to Quantity", "/cart/#{item.id}?quantity=add", method: :put %></p>
+          <p><%= link_to "Remove 1 from Quantity", "/cart/#{item.id}?quantity=remove",method: :put %></p>
         </center>
         </td>
       <td>
