@@ -63,25 +63,21 @@ RSpec.describe 'Cart show' do
           within "#cart-item-#{item.id}" do
             click_on "Add 1 to Quantity"
             expect(page).to have_content("2")
-            click_on "Add 1 to Quantity"
-            expect(page).to have_content("3")
             click_on "Remove 1 from Quantity"
-            expect(page).to have_content("2")
+            expect(page).to have_content("1")
           end
         end
       end
 
-      xit 'I cannot increase the quantity of items past the inventory' do
+      it 'I cannot increase the quantity of items past the inventory' do
         visit '/cart'
 
-        @items_in_cart.each do |item|
-          within "#cart-item-#{item.id}" do
+          within "#cart-item-#{@paper.id}" do
             click_on "Add 1 to Quantity"
             expect(page).to have_content("2")
             click_on "Add 1 to Quantity"
-            expect(page).to have_content("No More Can Be Ordered At This Time")
           end
-        end
+        expect(page).to have_content("No More Can Be Ordered At This Time")
       end
 
       it 'If I decrement the quantity to 0 the item is immediately removed from my cart' do

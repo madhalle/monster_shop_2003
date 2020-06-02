@@ -22,8 +22,13 @@ class CartController < ApplicationController
 
   def increase_quantity
     item = Item.find(params[:item_id])
-    cart.contents["#{item.id}"] += 1
-    redirect_to '/cart'
+    if cart.contents["#{item.id}"] < item.inventory
+      cart.contents["#{item.id}"] += 1
+      redirect_to '/cart'
+    else
+      flash[:notice] = "No More Can Be Ordered At This Time"
+      redirect_to '/cart'
+    end
   end
 
   def decrease_quantity
