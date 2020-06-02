@@ -13,7 +13,7 @@ describe "As a Merchant Employee" do
                          email: "p.fiona12@castle.co",
                          password: "boom",
                          role: 1,
-                          merchant_id: @merchants[0]  )
+                          merchant_id: @merchants[0].id  )
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
 
@@ -44,7 +44,7 @@ describe "As a Merchant Employee" do
     it "I can see the order show page" do
 
       # Change this to click_button from the merchant dashboard
-
+      # binding.pry
       visit "/merchant/orders/#{@orders[0].id}"
 
       expect(page).to have_content(@orders[0].name)
