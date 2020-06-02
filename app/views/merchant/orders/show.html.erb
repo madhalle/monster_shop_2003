@@ -16,6 +16,12 @@
       <li>Name: <%= link_to "#{item.name}", "/items/#{item.id}" %> </li>
       <li>Price: <%= item.price %> </li>
       <li>Quantity: <%= @order.item_orders.find_by_item(item.id).quantity %></li>
+      <li>Status: <%= @order.item_orders.find_by_item(item.id).status %></li>
+
+      <% if @order.item_orders.find_by_item(item.id).status != "fulfilled" %>
+        <li> <%= button_to "fulfill", "/item_orders/#{@order.item_orders.find_by_item(item.id).id}", params: {status: :fulfilled}, method: :patch %></li>
+      <% end %>
+
       <img src= <%= item.image %><br>
     </section>
   <% end %>

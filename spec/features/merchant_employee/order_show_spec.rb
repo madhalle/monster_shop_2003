@@ -77,5 +77,24 @@ describe "As a Merchant Employee" do
         expect(page).to have_content(2)
       end
     end
+
+    it "I can fulfill parts of the order" do
+      visit "/merchant/orders/#{@orders[0].id}"
+
+      within("#item-#{@items_merch1[0].id}") do
+        expect(page).to have_content("Status: unfulfilled")
+        click_on "fulfill"
+      end
+
+      expect(page).to have_content("You have fulfilled #{@items_merch1[0].name}")
+
+      within("#item-#{@items_merch1[0].id}") do
+        expect(page).to have_content("Status: fulfilled")
+        expect(page).to_not have_link("fulfill")
+      end
+
+      expect(@items_merch1[0].reload.inventory).to eq(2)
+
+    end
   end
 end
