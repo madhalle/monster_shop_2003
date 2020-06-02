@@ -70,7 +70,7 @@ RSpec.describe "Admin Merchants Index Page", type: :feature do
       expect(@pull_toy.active?).to eq(true)
       expect(@dog_bone.active?).to eq(true)
 
-      within "#merchant_#{@brian.id}" do
+      within "#merchant#{@brian.id}" do
         click_button "Disable"
       end
 
@@ -80,8 +80,8 @@ RSpec.describe "Admin Merchants Index Page", type: :feature do
       @dog_bone.reload
 
       expect(@tire.active?).to eq(true)
-      expect(@dragon.active?).to eq(false)
-      expect(@pull_toy.active?).to eq(true)
+      expect(@dragon.active?).to eq(true)
+      expect(@pull_toy.active?).to eq(false)
       expect(@dog_bone.active?).to eq(false)
     end
     # User Story 39, Disabled Merchant Item's are inactive
