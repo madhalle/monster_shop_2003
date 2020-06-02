@@ -49,8 +49,9 @@ RSpec.describe 'Site Navigation', type: :feature do
 
     describe 'As a Merchant Employee' do
       it 'I see a nav bar with the same links as a user, plus a link to the merchant dashboard' do
+        @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
 
-        merchant = User.create!(name: "Fiona",
+        merchant = @bike_shop.users.create!(name: "Fiona",
                            address: "123 Top Of The Tower",
                            city: "Duloc City",
                            state: "Duloc State",
