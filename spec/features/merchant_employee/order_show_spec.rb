@@ -4,6 +4,7 @@ describe "As a Merchant Employee" do
   describe "when I visit an order show page from my dashboard" do
 
     before (:each) do
+      @merchants = create_list(:merchant, 2)
       @user = User.create(name: "Fiona",
                          address: "123 Top Of The Tower",
                          city: "Duloc City",
@@ -11,7 +12,8 @@ describe "As a Merchant Employee" do
                          zip: 10001,
                          email: "p.fiona12@castle.co",
                          password: "boom",
-                         role: 1)
+                         role: 1,
+                          merchant_id: @merchants[0]  )
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
 
@@ -22,10 +24,9 @@ describe "As a Merchant Employee" do
 
        click_button "Log In"
 
-       @merchant = create_list(:merchant, 2)
        @orders = create_list(:order, 3, user_id: @user.id)
-       @items_merch1 = create_list(:item, 3, merchant_id: @merchant[0].id)
-       @items_merch2 = create_list(:item, 3, merchant_id: @merchant[1].id)
+       @items_merch1 = create_list(:item, 3, merchant_id: @merchants[0].id)
+       @items_merch2 = create_list(:item, 3, merchant_id: @merchants[1].id)
 
        ItemOrder.create!(order_id: @orders[0].id, item_id: @items_merch1[0].id, price: 2, quantity: 1)
        ItemOrder.create!(order_id: @orders[0].id, item_id: @items_merch1[1].id, price: 2, quantity: 3)
