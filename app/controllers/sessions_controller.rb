@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
     if logged_in?
       flash[:error] = "I am already logged in"
       redirect_to_path
-      # require "pry"; binding.pry
     end
   end
 

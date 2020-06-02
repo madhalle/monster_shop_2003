@@ -5,10 +5,8 @@ FactoryBot.define do
     city { "Duloc City" }
     state { "Duloc State" }
     zip { 10001 }
-    email { "p.fiona12@castle.co" }
-    sequence(:password_digest) { |n| "user#{n}" }
-    role { "Don't feed donkey table scraps, you will need to evacuate" }
-    active { False }
-
+    sequence(:email) {|n| "P.fiona#{n * rand(1000000)}"}
+    password { "boom" }
+    active? { false }
   end
 end
