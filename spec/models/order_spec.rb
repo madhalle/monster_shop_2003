@@ -54,5 +54,30 @@ describe Order, type: :model do
       expect(@order_1.total_item_count).to eq(5)
       expect(@order_2.total_item_count).to eq(6)
     end
+
+    it '#all_items_fulfilled?' do
+      expect(@order_1.all_items_fulfilled?).to eq(false)
+
+      @order_1.item_orders.each do |item_order|
+        item_order.fulfill
+      end
+
+      expect(@order_1.all_items_fulfilled?).to eq(true)
+    end
+
+    it '#package' do
+      expect(@order_1.status).to eq("pending")
+
+      @order_1.package
+
+      expect(@order_1.status).to eq("pending")
+
+      @order_1.item_orders.each do |item_order|
+        item_order.fulfill
+      end
+      @order_1.package
+      
+      expect(@order_1.status).to eq("packaged")
+    end
   end
 end
