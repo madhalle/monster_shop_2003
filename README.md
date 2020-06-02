@@ -354,7 +354,7 @@ The item image is a link to that item's show page
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 18, Items Index Page Statistics
 
@@ -376,7 +376,7 @@ When a user who is not a merchant nor an admin logs into the system, they are ta
 Admin users can access a namespaced route of "/admin/users" to see an index page  of all non-merchant/non-admin users, and from there see each user. This will allow the admin to perform every action on a user's account that the user themselves can perform. This functionality is taken care of in User Stories 53 & 54.
 
 ```
-[ ] done
+[x] done
 
 User Story 19, User Profile Show Page
 
@@ -387,7 +387,7 @@ And I see a link to edit my profile data
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 20, User Can Edit their Profile Data
 
@@ -405,7 +405,7 @@ And I see my updated information
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 21, User Can Edit their Password
 
@@ -421,7 +421,7 @@ And I see a flash message telling me that my password is updated
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 22, User Editing Profile Data must have unique Email address
 
@@ -468,7 +468,7 @@ If I decrement the count to 0 the item is immediately removed from my cart
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 25, Visitors must register or log in to check out
 
@@ -481,7 +481,7 @@ The words "log in" is a link to the login page
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 26, Registered users can check out
 
