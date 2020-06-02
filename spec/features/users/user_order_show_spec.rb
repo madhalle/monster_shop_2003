@@ -15,13 +15,15 @@ RSpec.describe "User's Oder Show Page", type: :feature do
 
       @tire = @bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 60)
       @chain = @bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 60)
+      @dragon = @bike_shop.items.create(name: "Dragon", description: "Guards your treasure as if it were its own.", price: 50, image: "https://images-na.ssl-images-amazon.com/images/I/51B9mwNncrL._AC_.jpg", inventory: 60)
 
       @order = Order.create(name: "Fiona", address: "123 Top Of The Tower", city: "Duloc City", state: "Duloc State", zip: 10001, user_id: @user.id)
       @order_2 = Order.create(name: "Fiona", address: "123 Top Of The Tower", city: "Duloc City", state: "Duloc State", zip: 10001, user_id: @user.id)
 
-      ItemOrder.create(order_id: @order.id, item_id: @tire.id, price: 50, quantity: 10)
-      ItemOrder.create(order_id: @order.id, item_id: @chain.id, price: 50, quantity: 10)
-      ItemOrder.create(order_id: @order_2.id, item_id: @chain.id, price: 50, quantity: 1)
+      @item_order_1 = ItemOrder.create(order_id: @order.id, item_id: @tire.id, price: 50, quantity: 10)
+      @item_order_2 = ItemOrder.create(order_id: @order.id, item_id: @chain.id, price: 50, quantity: 10)
+      @item_order_3 = ItemOrder.create(order_id: @order.id, item_id: @dragon.id, price: 50, quantity: 1, status: "fulfilled")
+      @item_order_4 = ItemOrder.create(order_id: @order_2.id, item_id: @chain.id, price: 50, quantity: 1)
 
       visit "/login"
       fill_in :email, with: @user.email
@@ -38,8 +40,8 @@ RSpec.describe "User's Oder Show Page", type: :feature do
       expect(page).to have_content(@order.id)
       expect(page).to have_content(@order.created_at)
       expect(page).to have_content(@order.updated_at)
-      expect(page).to have_content("Total Items: 20")
-      expect(page).to have_content("Grand Total: 1000.0")
+      expect(page).to have_content("Total Items: 21")
+      expect(page).to have_content("Grand Total: 1050.0")
       expect(page).to_not have_content(@order_2.id)
     end
 
@@ -61,6 +63,22 @@ RSpec.describe "User's Oder Show Page", type: :feature do
         expect(page).to have_content("Price: $50.0 each")
         expect(page).to have_content("Order Subtotal: $500.0")
       end
+    end
+
+    it "I can cancel an order" do
+      click_button("Cancel Order")
+
+      expect(@item_order_3.reload.status).to eq("unfulfilled")
+      expect(@order.reload.status).to eq("cancelled")
+      expect(current_path).to eq("/profile")
+      expect(page).to have_content("Order #{@order.id} has been cancelled.")
+    end
+
+    it "I cannot cancel an order that has been shipped" do
+      @order.update(:status => "shipped")
+
+      visit "/profile/orders/#{@order.id}"
+      expect(page).to_not have_button("Cancel Order")
     end
   end
 end
