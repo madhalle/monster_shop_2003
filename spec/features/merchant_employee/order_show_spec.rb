@@ -58,23 +58,23 @@ describe "As a Merchant Employee" do
 
       within("#item-#{@items_merch1[0].id}") do
         expect(page).to have_link(@items_merch1[0].name)
-        expect(page).to have_content(@items_merch1[0].image)
+        find("img[src*='#{@items_merch1[0].image}']")
         expect(page).to have_content(@items_merch1[0].price)
-        expect(page).to have_content(@orders[0].item_orders.first.quantity)
+        expect(page).to have_content(1)
       end
 
       within("#item-#{@items_merch1[1].id}") do
         expect(page).to have_link(@items_merch1[1].name)
-        expect(page).to have_content(@items_merch1[1].image)
+        find("img[src*='#{@items_merch1[1].image}']")
         expect(page).to have_content(@items_merch1[1].price)
-        expect(page).to have_content(@orders[1].item_orders[1].quantity)
+        expect(page).to have_content(3)
       end
 
       within("#item-#{@items_merch1[2].id}") do
         expect(page).to have_link(@items_merch1[2].name)
-        expect(page).to have_content(@items_merch1[2].image)
+        find("img[src*='#{@items_merch1[2].image}']")
         expect(page).to have_content(@items_merch1[2].price)
-        expect(page).to have_content(@orders[2].item_orders.last.quantity)
+        expect(page).to have_content(2)
       end
     end
   end

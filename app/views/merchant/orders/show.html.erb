@@ -12,9 +12,11 @@
 <h4> Items In Order: </h4>
 <ul>
   <%= @order.items_by_merchant(@order.user.merchant_id).each do |item| %>
-    <li>Name: <%= link_to "/items/#{item.id}" %> </li>
-    <li>Price: <%= item.price %> </li>
-    <li>Quantity: <%= @order.item_orders.find_by_item(item.id).quantity %></li>
-    <img src= <%= item.image %><br>
+    <section id="item-<%=item.id%>">
+      <li>Name: <%= link_to "#{item.name}", "/items/#{item.id}" %> </li>
+      <li>Price: <%= item.price %> </li>
+      <li>Quantity: <%= @order.item_orders.find_by_item(item.id).quantity %></li>
+      <img src= <%= item.image %><br>
+    </section>
   <% end %>
 </ul>
