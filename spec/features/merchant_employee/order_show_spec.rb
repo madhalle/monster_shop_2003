@@ -86,12 +86,13 @@ describe "As a Merchant Employee" do
         click_on "fulfill"
       end
 
+      expect(page).to have_content("You have fulfilled #{@items_merch1[0].name}")
+
       within("#item-#{@items_merch1[0].id}") do
         expect(page).to have_content("Status: fulfilled")
-        expect(page).to have_content("You have fulfilled #{@items_merch1[0].name}")
       end
 
-      expect(@items_merch1[0].inventory).to eq(2)
+      expect(@items_merch1[0].reload.inventory).to eq(2)
 
     end
   end
