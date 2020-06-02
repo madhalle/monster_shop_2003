@@ -517,7 +517,7 @@ The show page template for an order can be shared between users, merchants and a
 - Admins can fulfill items on order on behalf of a merchant
 
 ```
-[ ] done
+[x] done
 
 User Story 27, User Profile displays Orders link
 
@@ -529,7 +529,7 @@ When I click this link my URI path is "/profile/orders"
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 28, User Profile displays Orders
 
@@ -545,7 +545,7 @@ I see every order I've made, which includes the following information:
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 29, User views an Order Show Page
 
@@ -581,7 +581,7 @@ When I click the cancel button for an order, the following happens:
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 31, All Merchants fulfill items on an order
 
@@ -590,7 +590,7 @@ The order status changes from "pending" to "packaged"
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 32, Admin can see all orders
 
@@ -612,7 +612,7 @@ Orders are sorted by "status" in this order:
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 33, Admin can "ship" an order
 
