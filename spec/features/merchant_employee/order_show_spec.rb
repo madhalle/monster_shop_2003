@@ -30,7 +30,7 @@ describe "As a Merchant Employee" do
 
        ItemOrder.create!(order_id: @orders[0].id, item_id: @items_merch1[0].id, price: 2, quantity: 1)
        ItemOrder.create!(order_id: @orders[0].id, item_id: @items_merch1[1].id, price: 2, quantity: 3)
-       ItemOrder.create!(order_id: @orders[0].id, item_id: @items_merch1[2].id, price: 2, quantity: 2)
+       ItemOrder.create!(order_id: @orders[0].id, item_id: @items_merch1[2].id, price: 2, quantity: 7)
        ItemOrder.create!(order_id: @orders[0].id, item_id: @items_merch2[0].id, price: 2, quantity: 2)
        ItemOrder.create!(order_id: @orders[0].id, item_id: @items_merch2[2].id, price: 2, quantity: 2)
 
@@ -95,6 +95,22 @@ describe "As a Merchant Employee" do
 
       expect(@items_merch1[0].reload.inventory).to eq(2)
 
+    end
+
+    it "I can not fulfill items if the quantity requested is larger than the item's inventory" do
+      visit "/merchant/orders/#{@orders[0].id}"
+      save_and_open_page
+
+      within("#item-#{@items_merch1[0].id}") do
+        expect(page).to have_content("Status: unfulfilled")
+        click_on "fulfill"
+      end
+
+      within("#item-#{@items_merch1[2].id}") do
+        expect(page).to have_content("Status: unfulfilled")
+        expect(page).to_not have_link("fulfill")
+        expect(page).to have_content("This item cannot currently be fulfilled")
+      end
     end
   end
 end

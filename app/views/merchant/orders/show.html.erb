@@ -18,8 +18,10 @@
       <li>Quantity: <%= @order.item_orders.find_by_item(item.id).quantity %></li>
       <li>Status: <%= @order.item_orders.find_by_item(item.id).status %></li>
 
-      <% if @order.item_orders.find_by_item(item.id).status != "fulfilled" %>
+      <% if @order.item_orders.find_by_item(item.id).status != "fulfilled" && item.inventory >=  @order.item_orders.find_by_item(item.id).quantity%>
         <li> <%= button_to "fulfill", "/item_orders/#{@order.item_orders.find_by_item(item.id).id}", params: {status: :fulfilled}, method: :patch %></li>
+      <% else %>
+        <li> This item cannot currently be fulfilled </li>
       <% end %>
 
       <img src= <%= item.image %><br>
