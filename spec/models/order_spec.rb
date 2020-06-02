@@ -84,6 +84,7 @@ describe Order, type: :model do
       it '#sort_by_status' do
         ItemOrder.destroy_all
         Order.destroy_all
+
         pending_orders = create_list(:order, 3, user_id: @user.id, status: "pending")
         packaged_orders = create_list(:order, 3, user_id: @user.id, status: "packaged")
         shipped_orders = create_list(:order, 3, user_id: @user.id, status: "shipped")
