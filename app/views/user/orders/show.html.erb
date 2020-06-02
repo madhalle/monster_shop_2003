@@ -19,4 +19,7 @@
       <li>Order Subtotal: $<%= item_order.subtotal %></li>
     </ul>
   </section>
+<% end %><br>
+<% if @order.status != "shipped"%>
+  <%= button_to "Cancel Order", "/orders/#{@order.id}", params: {type: :cancel}, method: :patch %>
 <% end %>
