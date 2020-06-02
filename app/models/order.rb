@@ -28,6 +28,11 @@ class Order <ApplicationRecord
   end
 
   def self.sort_by_status
-    all.to_a.group_by { |order| order.status}
+    order_status_types = ["pending", "packaged", "shipped", "cancelled"]
+    sorted_orders = Hash.new
+    order_status_types.each do |status_type|
+      sorted_orders[status_type] = all.where("status = '#{status_type}'")
+    end
+    sorted_orders
   end
 end
