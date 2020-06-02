@@ -1,0 +1,20 @@
+<h2>Order Id: <%= @order.id %></h2>
+
+<h4> Orderer Info: </h4>
+<ul>
+  <li>Name: <%= @order.name %></li>
+  <li>Address: <%= @order.address %></li>
+  <li>City: <%= @order.city %></li>
+  <li>State: <%= @order.state %></li>
+  <li>Zip: <%= @order.zip %></li>
+</ul>
+
+<h4> Items In Order: </h4>
+<ul>
+  <%= @order.items_by_merchant(@order.user.merchant_id).each do |item| %>
+    <li>Name: <%= link_to "/items/#{item.id}" %> </li>
+    <li>Price: <%= item.price %> </li>
+    <li>Quantity: <%= @order.item_orders.find_by_item(item.id).quantity %></li>
+    <img src= <%= item.image %><br>
+  <% end %>
+</ul>

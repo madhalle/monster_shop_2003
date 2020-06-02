@@ -44,6 +44,7 @@ describe "As a Merchant Employee" do
     it "I can see the order show page" do
 
       # Change this to click_button from the merchant dashboard
+
       visit "/merchant/orders/#{@orders[0].id}"
 
       expect(page).to have_content(@orders[0].name)
