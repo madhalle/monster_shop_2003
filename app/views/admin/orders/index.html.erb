@@ -1,0 +1,64 @@
+<h2>All Orders</h2>
+
+<section id="packaged-orders">
+  <h4>Packaged Orders:</h4>
+  <% if @sorted_orders["packaged"] %>
+    <% @sorted_orders["packaged"].each do |order|%>
+      <section id="order-<%=order.id%>">
+        <ul>
+          <li><%= link_to "User: #{order.name}", "/admin/users/#{order.user_id}" %></li>
+          <li>Order Id: <%= order.id %></li>
+          <li>Ordered On: <%= order.created_at %></li>
+          <li>
+            <%= link_to "ship", "/admin/orders/#{order.id}/ship", method: :patch %>
+          </li>
+        </ul>
+      </section>
+    <% end %>
+  <% end %>
+</section>
+
+<section id="pending-orders">
+  <h4>Pending Orders:</h4>
+  <% if @sorted_orders["pending"] %>
+    <% @sorted_orders["pending"].each do |order| %>
+      <section id="order-<%=order.id%>">
+        <ul>
+          <li><%= link_to "User: #{order.name}", "/admin/users/#{order.user_id}" %></li>
+          <li>Order Id: <%= order.id %></li>
+          <li>Ordered On: <%= order.created_at %></li>
+        </ul>
+      </section>
+    <% end %>
+  <% end %>
+</section>
+
+<section id="shipped-orders">
+  <h4>Shipped Orders:</h4>
+  <% if @sorted_orders["shipped"] %>
+    <% @sorted_orders["shipped"].each do |order| %>
+      <section id="order-<%=order.id%>">
+        <ul>
+          <li><%= link_to "User: #{order.name}", "/admin/users/#{order.user_id}" %></li>
+          <li>Order Id: <%= order.id %></li>
+          <li>Ordered On: <%= order.created_at %></li>
+        </ul>
+      </section>
+    <% end %>
+  <% end %>
+</section>
+
+<section id="cancelled-orders">
+  <h4>Cancelled Orders:</h4>
+  <% if @sorted_orders["cancelled"] %>
+    <% @sorted_orders["cancelled"].each do |order| %>
+      <section id="order-<%=order.id%>">
+        <ul>
+          <li><%= link_to "User: #{order.name}", "/admin/users/#{order.user_id}" %></li>
+          <li>Order Id: <%= order.id %></li>
+          <li>Ordered On: <%= order.created_at %></li>
+        </ul>
+      </section>
+    <% end %>
+  <% end %>
+</section>
