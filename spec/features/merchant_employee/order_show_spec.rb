@@ -41,6 +41,7 @@ describe "As a Merchant Employee" do
     end
 
     it "I can see the order show page" do
+
       # Change this to click_button from the merchant dashboard
       visit "/merchant/orders/#{@orders[0].id}"
 
