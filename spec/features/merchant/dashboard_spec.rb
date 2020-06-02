@@ -22,13 +22,10 @@ RSpec.describe "when logged in as a merchant employee" do
      expect(page).to have_content(@bike_shop.state)
      expect(page).to have_content(@bike_shop.zip)
   end
+
+  it "I will see a link to view my items" do
+     visit "/merchant"
+     click_on "View Your Items"
+     expect(current_path).to eq("/merchant/items")
+  end
 end
-# ```
-# [ ] done
-#
-# User Story 34, Merchant Dashboard Show Page
-#
-# As a merchant employee
-# When I visit my merchant dashboard ("/merchant")
-# I see the name and full address of the merchant I work for
-# ```
