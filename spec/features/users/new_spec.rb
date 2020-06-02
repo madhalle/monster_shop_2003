@@ -56,11 +56,12 @@ RSpec.describe 'user new page', type: :feature do
       fill_in :zip, with: ""
       fill_in :email, with: email
       fill_in :password, with: password
-      fill_in :password_confirmation, with: ""
+      fill_in :password_confirmation, with:""
 
       click_button 'Create User'
+  
 
-      expect(page).to have_content("Zip can't be blank and Password confirmation doesn't match Password")
+      expect(page).to have_content("Password confirmation doesn't match Password and Zip can't be blank")
     end
 
     it "Email must be unique to register" do

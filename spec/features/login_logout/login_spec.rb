@@ -39,7 +39,7 @@ RSpec.describe "Login" do
 
       click_button "Log In"
 
-      expect(current_path).to eq("/profile/#{@registered_user.id}")
+      expect(current_path).to eq("/profile")
     end
 
     it "as a merchant, they are directed to their merchant dashboard page" do
@@ -93,7 +93,7 @@ RSpec.describe "Login" do
 
       visit "/login"
 
-      expect(current_path).to eq("/profile/#{@registered_user.id}")
+      expect(current_path).to eq("/profile")
       expect(page).to have_content("I am already logged in")
     end
 
