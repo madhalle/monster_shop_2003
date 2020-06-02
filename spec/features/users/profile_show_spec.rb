@@ -40,5 +40,13 @@ describe "As a default user" do
 
       expect(page).to have_link("Edit Profile")
     end
+
+    it "I can see a link to view 'My Orders'" do 
+      visit "/profile"
+
+      click_on "My Orders"
+
+      expect(current_path).to eq("/profile/orders")
+    end
   end
 end

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   patch "/profile", to: "profile#show"
   get "/profile/edit", to: 'profile#edit'
   get "/profile/edit_password", to: 'profile#edit_password'
+  get "/profile/orders", to: 'user/orders#index'
 
   get "/logout", to: "welcome#index"
 
