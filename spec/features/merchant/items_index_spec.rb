@@ -24,7 +24,11 @@ RSpec.describe "Merchant Items Index Page" do
         expect(page).to have_content("Active")
         expect(page).to have_content(@tire.description)
         expect(page).to have_content("Inventory: #{@tire.inventory}")
+        click_on "Deactivate"
+        expect(current_path).to eq("/merchant/items")
+        expect(page).to have_content("Inactive")
       end
+      expect(page).to have_content("The #{@tire.name} is no longer for sale")
 
       within "#item-#{@chain.id}" do
         expect(page).to have_content(@chain.name)
@@ -33,7 +37,11 @@ RSpec.describe "Merchant Items Index Page" do
         expect(page).to have_content("Inactive")
         expect(page).to have_content(@chain.description)
         expect(page).to have_content("Inventory: #{@chain.inventory}")
+        click_on "Activate"
+        expect(current_path).to eq("/merchant/items")
+        expect(page).to have_content("Active")
       end
+      expect(page).to have_content("The #{@chain.name} is now available for sale")
 
       expect(page).to_not have_css("#item-#{@shifter.id}")
     end
