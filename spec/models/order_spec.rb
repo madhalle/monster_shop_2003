@@ -76,8 +76,26 @@ describe Order, type: :model do
         item_order.fulfill
       end
       @order_1.package
-      
+
       expect(@order_1.status).to eq("packaged")
+    end
+
+    describe "Class Methods" do
+      it '#sort_by_status' do
+        ItemOrder.destroy_all
+        Order.destroy_all
+        pending_orders = create_list(:order, 3, user_id: @user.id, status: "pending")
+        packaged_orders = create_list(:order, 3, user_id: @user.id, status: "packaged")
+        shipped_orders = create_list(:order, 3, user_id: @user.id, status: "shipped")
+        cancelled_orders = create_list(:order, 3, user_id: @user.id, status: "cancelled")
+
+        sorted_orders = Order.sort_by_status
+
+        expect(sorted_orders["pending"]).to eq(pending_orders)
+        expect(sorted_orders["packaged"]).to eq(packaged_orders)
+        expect(sorted_orders["shipped"]).to eq(shipped_orders)
+        expect(sorted_orders["cancelled"]).to eq(cancelled_orders)
+      end
     end
   end
 end
