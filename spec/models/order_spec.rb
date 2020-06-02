@@ -80,6 +80,10 @@ describe Order, type: :model do
       expect(@order_1.status).to eq("packaged")
     end
 
+    it '#items_by_merchant' do
+      expect(@order_1.items_by_merchant(@meg.id)).to eq([@tire])
+    end
+
     describe "Class Methods" do
       it '#sort_by_status' do
         ItemOrder.destroy_all
