@@ -2,6 +2,12 @@
 
 <h2><%=@user_merchant.name%> </h2>
 <p><%=@user_merchant.address%></p><br>
+
+<p><%=@user_merchant.city%>, <%=@user_merchant.state%></p><br>
+<p><%=@user_merchant.zip%></p>
+
+<h2><%= link_to "View Your Items", "/merchant/items" %></h2>
+
 <p><%= @user_merchant.city%>, <%=@user_merchant.state%></p><br>
 <p> <%= @user_merchant.zip%> </p>
 
@@ -12,3 +18,4 @@
       <p>Items in order: <%= order.total_item_count %></p><br>
       <p>Total val: <%= order.grandtotal %></p><br>
 <% end %>
+

@@ -28,6 +28,13 @@ RSpec.describe "when logged in as a merchant employee" do
      expect(page).to have_content(@bike_shop.zip)
   end
 
+  it "I will see a link to view my items" do
+     visit "/merchant"
+     click_on "View Your Items"
+     expect(current_path).to eq("/merchant/items")
+  end
+end
+
   it "I will see name & address of merchant I work for on my dashboard" do
     @user = User.create!(name: "Fiona",
                        address: "123 Top Of The Tower",
@@ -53,18 +60,4 @@ RSpec.describe "when logged in as a merchant employee" do
     save_and_open_page
   end
 end
-# ```
-# [ ] done
-#
-# User Story 35, Merchant Dashboard displays Orders
-#
-# As a merchant employee
-# When I visit my merchant dashboard ("/merchant")
-# If any users have pending orders containing items I sell
-# Then I see a list of these orders.
-# Each order listed includes the following information:
-# - the ID of the order, which is a link to the order show page ("/merchant/orders/15")
-# - the date the order was made
-# - the total quantity of my items in the order
-# - the total value of my items for that order
-# ```
+
