@@ -6,11 +6,9 @@
 <p> <%= @user_merchant.zip%> </p>
 
 <h2> Pending Orders</h2>
-<%@user_merchant.items.uniq.each do |item|%>
-  <% item.orders.uniq.each do |order| %>
-    <%if order.status == "pending" %>
+<%@user_merchant.merchant_orders.each do |order|%>
       <h3>Order #: <%= order.id %></h3><br>
-      <p>Order placed on: <%= order.created_at %></p><br>
-      <% end %>
-  <% end %>
+      <p>Order placed on: <%= order.created_at.strftime("%m/%d/%Y") %></p><br>
+      <p>Items in order: <%= order.total_item_count %></p><br>
+      <p>Total val: <%= order.grandtotal %></p><br>
 <% end %>

@@ -49,7 +49,7 @@ RSpec.describe "when logged in as a merchant employee" do
 
 
     expect(page).to have_content(@order.id)
-    expect(page).to have_content(@order.created_at)
+    expect(page).to have_content(@order.created_at.strftime("%m/%d/%Y"))
     save_and_open_page
   end
 end
