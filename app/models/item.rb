@@ -25,6 +25,15 @@ class Item <ApplicationRecord
     item_orders.empty?
   end
 
+  def modify_inventory(type_and_quantity)
+    if type_and_quantity[:type] == :increase
+      final_amount = self.inventory + type_and_quantity[:quantity]
+    elsif type_and_quantity[:type] == :decrease
+      final_amount = self.inventory - type_and_quantity[:quantity]
+    end
+    update(inventory: final_amount)
+  end
+
   def self.sorted_items(limit, order)
     joins(:item_orders).select("items.*, sum(quantity) as total_bought").group(:id).order("sum(quantity) #{order}").limit(limit)
   end

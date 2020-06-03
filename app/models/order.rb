@@ -27,6 +27,10 @@ class Order <ApplicationRecord
     end
   end
 
+  def items_by_merchant(merchant_id)
+    items.where("merchant_id = '#{merchant_id}'")
+  end
+
   def self.sort_by_status
     order_status_types = ["pending", "packaged", "shipped", "cancelled"]
     sorted_orders = Hash.new
