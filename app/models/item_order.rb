@@ -8,8 +8,7 @@ class ItemOrder <ApplicationRecord
     price * quantity
   end
 
-  def merchant_orders
-    require "pry"; binding.pry
-    Order.joins(:items).where( )
+  def fulfill
+    update(status: "fulfilled")
   end
 end

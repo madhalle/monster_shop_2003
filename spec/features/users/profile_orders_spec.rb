@@ -44,7 +44,7 @@ describe "As a default user" do
         expect(page).to have_content("Ordered On: #{@orders[0].created_at}")
         expect(page).to have_content("Updated On: #{@orders[0].updated_at}")
         expect(page).to have_content("Order Status: #{@orders[0].status}")
-        expect(page).to have_content("Unique Items: 3")
+        expect(page).to have_content("Total Items: 3")
         expect(page).to have_content("Grand Total: 6")
       end
       within("#order-#{@orders[1].id}") do
@@ -52,7 +52,7 @@ describe "As a default user" do
         expect(page).to have_content("Ordered On: #{@orders[1].created_at}")
         expect(page).to have_content("Updated On: #{@orders[1].updated_at}")
         expect(page).to have_content("Order Status: #{@orders[1].status}")
-        expect(page).to have_content("Unique Items: 2")
+        expect(page).to have_content("Total Items: 2")
         expect(page).to have_content("Grand Total: 4")
       end
       within("#order-#{@orders[2].id}") do
@@ -60,7 +60,7 @@ describe "As a default user" do
         expect(page).to have_content("Ordered On: #{@orders[2].created_at}")
         expect(page).to have_content("Updated On: #{@orders[2].updated_at}")
         expect(page).to have_content("Order Status: #{@orders[2].status}")
-        expect(page).to have_content("Unique Items: 1")
+        expect(page).to have_content("Total Items: 2")
         expect(page).to have_content("Grand Total: 4")
       end
     end
