@@ -27,13 +27,24 @@ RSpec.describe 'merchant index page', type: :feature do
 
   describe 'As an admin' do
     before :each do
-      @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 80203)
-      @dog_shop = Merchant.create(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
+      @admin = User.create(name: "Fiona",
+                         address: "123 Top Of The Tower",
+                         city: "Duloc City",
+                         state: "Duloc State",
+                         zip: 10001,
+                         email: "p.fiona12@castle.co",
+                         password: "boom",
+                         role: 2)
+
+      @bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
 
     it 'I can click on a merchant name and go to their merchant dashboard' do
       visit '/merchants'
-      click_on "Brian's Bike Shop"
+      click_on "Meg's Bike Shop"
 
       expect(current_path).to eq("/admin/merchants/#{@bike_shop.id}")
       expect(page).to have_content(@bike_shop.name)
@@ -43,7 +54,7 @@ RSpec.describe 'merchant index page', type: :feature do
       expect(page).to have_content(@bike_shop.zip)
 
       visit '/merchants'
-      click_on "Meg's Dog Shop"
+      click_on "Brian's Dog Shop"
 
       expect(current_path).to eq("/admin/merchants/#{@dog_shop.id}")
       expect(page).to have_content(@dog_shop.name)
