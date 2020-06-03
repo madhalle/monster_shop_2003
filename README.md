@@ -354,7 +354,7 @@ The item image is a link to that item's show page
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 18, Items Index Page Statistics
 
@@ -376,7 +376,7 @@ When a user who is not a merchant nor an admin logs into the system, they are ta
 Admin users can access a namespaced route of "/admin/users" to see an index page  of all non-merchant/non-admin users, and from there see each user. This will allow the admin to perform every action on a user's account that the user themselves can perform. This functionality is taken care of in User Stories 53 & 54.
 
 ```
-[ ] done
+[x] done
 
 User Story 19, User Profile Show Page
 
@@ -387,7 +387,7 @@ And I see a link to edit my profile data
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 20, User Can Edit their Profile Data
 
@@ -405,7 +405,7 @@ And I see my updated information
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 21, User Can Edit their Password
 
@@ -421,7 +421,7 @@ And I see a flash message telling me that my password is updated
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 22, User Editing Profile Data must have unique Email address
 
@@ -468,7 +468,7 @@ If I decrement the count to 0 the item is immediately removed from my cart
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 25, Visitors must register or log in to check out
 
@@ -481,7 +481,7 @@ The words "log in" is a link to the login page
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 26, Registered users can check out
 
@@ -517,7 +517,7 @@ The show page template for an order can be shared between users, merchants and a
 - Admins can fulfill items on order on behalf of a merchant
 
 ```
-[ ] done
+[x] done
 
 User Story 27, User Profile displays Orders link
 
@@ -529,7 +529,7 @@ When I click this link my URI path is "/profile/orders"
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 28, User Profile displays Orders
 
@@ -545,7 +545,7 @@ I see every order I've made, which includes the following information:
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 29, User views an Order Show Page
 
@@ -581,7 +581,7 @@ When I click the cancel button for an order, the following happens:
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 31, All Merchants fulfill items on an order
 
@@ -590,7 +590,7 @@ The order status changes from "pending" to "packaged"
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 32, Admin can see all orders
 
@@ -612,7 +612,7 @@ Orders are sorted by "status" in this order:
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 33, Admin can "ship" an order
 
@@ -633,7 +633,7 @@ This is the landing page when a merchant logs in. Here, they will see their cont
 Admin users will see more information on the "/admin/merchants" route that all users see. For example, on this page, an admin user can navigate to each merchant's dashboard under a route like "/admin/merchants/7". This will allow the admin to perform every action that the merchant themselves can perform. Fulfilling merchant items will be an extension in User Stories 61 & 62
 
 ```
-[ ] done
+[x] done
 
 User Story 34, Merchant Dashboard Show Page
 

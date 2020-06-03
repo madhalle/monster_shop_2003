@@ -4,6 +4,8 @@ RSpec.describe "Login" do
   describe "when a visitor visits login path" do
 
     before(:each) do
+      @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
+
       @registered_user = User.create!(name: "Shrek",
                          address: "123 Top Of The Tower",
                          city: "Duloc City",
@@ -12,7 +14,7 @@ RSpec.describe "Login" do
                          email: "bigshrek12@castle.co",
                          password: "boom",
                          role: 0)
-      @merchant = User.create!(name: "Fiona",
+      @merchant = @bike_shop.users.create!(name: "Fiona",
                          address: "123 Top Of The Tower",
                          city: "Duloc City",
                          state: "Duloc State",
