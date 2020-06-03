@@ -6,12 +6,11 @@ class Admin::MerchantsController < Admin::BaseController
 
   def update
     @merchant = Merchant.find(merchant_params[:merchant_id])
-    if merchant_params[:type] == "disable"
-      @merchant.items.each do |item|
-        item.update(:active? => false)
-      end
+    @merchant.toggle!(:active?)
+    @merchant.items.each do |item|
+      item.toggle!(:active?)
     end
-    flash[:update] = "#{@merchant.name}'s account has been disabled."
+    flash[:update] = "#{@merchant.name}'s account has been #{merchant_params[:type]}d."
     redirect_to "/admin/merchants"
   end
 
