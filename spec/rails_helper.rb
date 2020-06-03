@@ -80,3 +80,15 @@ def login_user
                      role: 0)
   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 end
+
+def login_merchant
+  @merchant = User.create(name: "Fiona",
+                     address: "123 Top Of The Tower",
+                     city: "Duloc City",
+                     state: "Duloc State",
+                     zip: 10001,
+                     email: "princessenergy@castle.co",
+                     password: "boom",
+                     role: 1)
+  allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
+end
