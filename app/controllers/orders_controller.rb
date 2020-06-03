@@ -34,10 +34,21 @@ class OrdersController <ApplicationController
     end
   end
 
+  def update
+    @order = Order.find(params[:order_id])
+    if order_params[:type] == "cancel"
+      @order.update(:status => "cancelled")
+      @order.item_orders.each do |item_order|
+        item_order.update(:status => "unfulfilled")
+      end
+      flash[:cancel] = "Order #{@order.id} has been cancelled."
+      redirect_to "/profile"
+    end
+  end
 
   private
 
   def order_params
-    params.permit(:name, :address, :city, :state, :zip)
+    params.permit(:name, :address, :city, :state, :zip, :type)
   end
 end
