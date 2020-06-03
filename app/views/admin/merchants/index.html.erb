@@ -1,0 +1,11 @@
+<h1 align = "center">Merchants</h1>
+<% @merchants.each do |merchant| %>
+  <section id=<%= "merchant#{merchant.id} "%>>
+    <p><%= merchant.name %></p>
+    <% if merchant.active? %>
+      <%= button_to "Disable", "/admin/merchants/#{merchant.id}", params: {type: :disable}, method: :patch %>
+    <% else %>
+      <%= button_to "Enable", "/admin/merchants/#{merchant.id}", params: {type: :enable}, method: :patch %>
+    <% end %>
+  </section>
+<% end %>

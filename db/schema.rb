@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20200531201926) do
     t.string "city"
     t.string "state"
     t.integer "zip"
+    t.boolean "active?", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
