@@ -1,6 +1,16 @@
-<h1>Dashboard</h1>
+<h1> Dashboard</h1>
 
 <h2><%=@user_merchant.name%> </h2>
 <p><%=@user_merchant.address%></p><br>
-<p><%=@user_merchant.city%>, <%=@user_merchant.state%></p><br>
-<p><%=@user_merchant.zip%></p>
+<p><%= @user_merchant.city%>, <%=@user_merchant.state%></p><br>
+<p> <%= @user_merchant.zip%> </p>
+
+<h2> Pending Orders</h2>
+<%@user_merchant.items.uniq.each do |item|%>
+  <% item.orders.uniq.each do |order| %>
+    <%if order.status == "pending" %>
+      <h3>Order #: <%= order.id %></h3><br>
+      <p>Order placed on: <%= order.created_at %></p><br>
+      <% end %>
+  <% end %>
+<% end %>
