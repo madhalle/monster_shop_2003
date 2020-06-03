@@ -99,7 +99,6 @@ describe "As a Merchant Employee" do
 
     it "I can not fulfill items if the quantity requested is larger than the item's inventory" do
       visit "/merchant/orders/#{@orders[0].id}"
-      save_and_open_page
 
       within("#item-#{@items_merch1[0].id}") do
         expect(page).to have_content("Status: unfulfilled")
