@@ -91,15 +91,6 @@ RSpec.describe "Admin Merchants Index Page", type: :feature do
       expect(page).to have_content("#{@meg.name}'s account has been enabled.")
       expect(page).to_not have_button("Enable")
       expect(page).to have_button("Disable")
-
-      # User Story 40, Admin enables a merchant account
-      #
-      # As an admin
-      # When I visit the merchant index page
-      # I see an "enable" button next to any merchants whose accounts are disabled
-      # When I click on the "enable" button
-      # I am returned to the admin's merchant index page where I see that the merchant's account is now enabled
-      # And I see a flash message that the merchant's account is now enabled
     end
 
     it "can enable items for an enabled merchant" do
@@ -124,13 +115,6 @@ RSpec.describe "Admin Merchants Index Page", type: :feature do
 
       expect(@pull_toy.active?).to eq(true)
       expect(@dog_bone.active?).to eq(true)
-
-      # User Story 41, Enabled Merchant Item's are active
-      #
-      # As an admin
-      # When I visit the merchant index page
-      # And I click on the "enable" button for a disabled merchant
-      # Then all of that merchant's items should be activated
     end
   end
 end
