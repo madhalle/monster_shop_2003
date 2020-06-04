@@ -13,7 +13,6 @@ RSpec.describe 'item show page', type: :feature do
     expect(page).to have_link(@chain.name)
     expect(page).to have_content(@chain.description)
     expect(page).to have_content("Price: $#{@chain.price}")
-    expect(page).to have_content("Active")
     expect(page).to have_content("Inventory: #{@chain.inventory}")
     expect(page).to have_link(@bike_shop.name)
     expect(page).to have_css("img[src*='#{@chain.image}']")
