@@ -22,9 +22,9 @@ class CartController < ApplicationController
 
   def update_quantity
     item = Item.find(params[:item_id])
-    if params[:quantity] == "add"
+    if params[:quantity] == 'add'
       add_quantity(item)
-    elsif params[:quantity] == "reduce"
+    elsif params[:quantity] == 'reduce'
       reduce_quantity(item)
     end
   end
@@ -36,18 +36,17 @@ class CartController < ApplicationController
       cart.increase_quantity(item)
       redirect_to '/cart'
     else
-      flash[:notice] = "No More Can Be Ordered At This Time"
+      flash[:notice] = 'No More Can Be Ordered At This Time'
       redirect_to '/cart'
     end
   end
 
   def reduce_quantity(item)
+    cart.decrease_quantity(item)
     if cart.contents["#{params[:item_id]}"] == 0
       remove_item
     else
-      cart.decrease_quantity(item)
       redirect_to '/cart'
     end
   end
-
 end
