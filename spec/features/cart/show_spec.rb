@@ -87,6 +87,7 @@ RSpec.describe 'Cart show' do
           within "#cart-item-#{item.id}" do
             click_on "Remove 1 from Quantity"
           end
+          save_and_open_page
           expect(page).to_not have_css("#cart-item-#{item.id}")
         end
       end
