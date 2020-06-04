@@ -25,7 +25,7 @@
       <p> <%= item.description unless @merchant%> </p>
       <p>Price: <%=number_to_currency(item.price) %> </p>
       <p>Inventory: <%= item.inventory %> </p>
-      <% if current_user.merchant? || current_user.admin? %>
+      <% if current_user && (current_user.merchant? || current_user.admin?) %>
         <% if item.active? %>
             <p>Active</p>
           <% else %>
