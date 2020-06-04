@@ -4,6 +4,7 @@
 - Cart update quantity
 - ItemOrdersController add conditional for updating status
 - SessionsController create action
+- Implement path helpers throughout the project
 
 ## Bugs
 - Register on site path broken 
