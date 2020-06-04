@@ -1,5 +1,11 @@
+## this renders the partial
+<%= render partial: 'form', locals: {path: "/merchants/#{@merchant.id}/items", method: :post, button_text: 'Create Item'} %>
+
+## this link is needed even if a partial is not used
 <h1>Create New Item For <%=link_to @merchant.name, "/merchants/#{@merchant.id}" %></h1>
 
+## note: The code below is pulled into a partial, and needs to be deleted before running the tests
+## I added it back so others can try it themselves
 <center>
   <%= form_tag "/merchants/#{@merchant.id}/items", method: :post do %>
     <%= label_tag :name %>

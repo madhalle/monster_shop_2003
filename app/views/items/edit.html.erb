@@ -1,5 +1,11 @@
+## this renders the partial
+<%= render partial: 'form', locals: {path: "/items/#{@item.id}", method: :patch, button_text: 'Update Item'} %>
+
+## this link is needed even if a partial is not used
 <h1>Edit <%=link_to @item.name, "/items/#{@item.id}" %></h1>
 
+## note: The code below is pulled into a partial, and needs to be deleted before running the tests
+## I added it back so others can try it themselves
 <center>
   <%= form_tag "/items/#{@item.id}", method: :patch  do %>
     <%= label_tag :name %>
