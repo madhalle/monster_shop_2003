@@ -41,6 +41,7 @@ describe Order, type: :model do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
+    
     it 'grandtotal' do
       expect(@order_1.grandtotal).to eq(230)
     end
@@ -78,6 +79,10 @@ describe Order, type: :model do
       @order_1.package
 
       expect(@order_1.status).to eq("packaged")
+    end
+
+    it '#items_by_merchant' do
+      expect(@order_1.items_by_merchant(@meg.id)).to eq([@tire])
     end
 
     describe "Class Methods" do

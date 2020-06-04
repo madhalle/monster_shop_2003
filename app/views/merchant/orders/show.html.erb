@@ -1,0 +1,30 @@
+<h2>Order Id: <%= @order.id %></h2>
+
+<h4> Orderer Info: </h4>
+<ul>
+  <li>Name: <%= @order.name %></li>
+  <li>Address: <%= @order.address %></li>
+  <li>City: <%= @order.city %></li>
+  <li>State: <%= @order.state %></li>
+  <li>Zip: <%= @order.zip %></li>
+</ul>
+
+<h4> Items In Order: </h4>
+<ul>
+  <%= @order.items_by_merchant(@order.user.merchant_id).each do |item| %>
+    <section id="item-<%=item.id%>">
+      <li>Name: <%= link_to "#{item.name}", "/items/#{item.id}" %> </li>
+      <li>Price: <%= item.price %> </li>
+      <li>Quantity: <%= @order.item_orders.find_by_item(item.id).quantity %></li>
+      <li>Status: <%= @order.item_orders.find_by_item(item.id).status %></li>
+
+      <% if @order.item_orders.find_by_item(item.id).status != "fulfilled" && item.inventory >=  @order.item_orders.find_by_item(item.id).quantity%>
+        <li> <%= button_to "fulfill", "/item_orders/#{@order.item_orders.find_by_item(item.id).id}", params: {status: :fulfilled}, method: :patch %></li>
+      <% else %>
+        <li> This item cannot currently be fulfilled </li>
+      <% end %>
+
+      <img src= <%= item.image %><br>
+    </section>
+  <% end %>
+</ul>
