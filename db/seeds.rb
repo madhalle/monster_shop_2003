@@ -16,7 +16,7 @@ Item.destroy_all
 
 faker_merchants = []
 
-5.times do
+10.times do
   merchant = Merchant.create(
     name: Faker::Company.unique.name,
     address: Faker::Address.street_address,
@@ -40,16 +40,151 @@ faker_merchants.each_with_index do |fake_merchant, index|
   )
 
 
-  10.times do
+  10.times do |n|
     fake_merchant.items.create(
       name: Faker::Beer.name,
       description: Faker::Beer.style,
-      price: rand(100),
-      image: Faker::LoremFlickr.image(size: "60x72", search_terms: ['beer']),
-      inventory: rand(15)
+      price: rand(10),
+      image: "https://loremflickr.com/300/350/beer,mug,alcohol/all?lock=#{rand(1000)}",
+      inventory: rand(50)
     )
   end
 end
+
+# Users
+taylor = User.create(name: "Taylor",
+  address: "555 Main St.",
+  city: "Louisville",
+  state: "Co",
+  zip: 80027,
+  email: "t.keller@gmail.com",
+  password: "taylor",
+  role: 0)
+
+ana = User.create(name: "Ana",
+  address: "555 Main St.",
+  city: "Louisville",
+  state: "Co",
+  zip: 80027,
+  email: "ana@gmail.com",
+  password: "ana",
+  role: 0)
+
+# Admin
+User.create(name: "Admin",
+  address: "555 Main St.",
+  city: "Louisville",
+  state: "CO",
+  zip: 80027,
+  email: "admin@gmail.com",
+  password: "admin",
+  role: 2)
+
+users = []
+
+10.times do
+  new_user = User.create(
+    name: Faker::Name.unique.name,
+    address: Faker::Address.street_address,
+    city:Faker::Address.city,
+    state:Faker::Address.state,
+    zip:Faker::Address.zip.to_i,
+    email: Faker::Name.unique.first_name + "#{rand(25)}@gmail.com",
+    password: "user",
+    role: 0
+  )
+    users << new_user
+end
+
+# Orders
+
+order1 = Order.create(
+  name: "Taylor",
+  address: Faker::Address.street_address,
+  city:Faker::Address.city,
+  state:Faker::Address.state,
+  zip:Faker::Address.zip.to_i,
+  user_id: taylor.id,
+)
+
+order2 = Order.create(
+  name: "Taylor",
+  address: Faker::Address.street_address,
+  city:Faker::Address.city,
+  state:Faker::Address.state,
+  zip:Faker::Address.zip.to_i,
+  user_id: taylor.id,
+  status: "shipped"
+)
+
+order3 = Order.create(
+  name: "Taylor",
+  address: Faker::Address.street_address,
+  city:Faker::Address.city,
+  state:Faker::Address.state,
+  zip:Faker::Address.zip.to_i,
+  user_id: taylor.id,
+  status: "cancelled"
+)
+
+order4 = Order.create(
+  name: "Ana",
+  address: Faker::Address.street_address,
+  city:Faker::Address.city,
+  state:Faker::Address.state,
+  zip:Faker::Address.zip.to_i,
+  user_id: ana.id,
+)
+
+order5 = Order.create(
+  name: "Ana",
+  address: Faker::Address.street_address,
+  city:Faker::Address.city,
+  state:Faker::Address.state,
+  zip:Faker::Address.zip.to_i,
+  user_id: ana.id,
+  status: "packaged"
+)
+
+orders = [order1, order2, order3, order4, order5]
+
+# ItemOrders
+orders.each do |order|
+  rand(10).times do |n|
+    ItemOrder.create(
+      order_id: order.id,
+      item_id: faker_merchants[n].items[n].id,
+      price: faker_merchants[n].items[n].price,
+      quantity: rand(10)
+    )
+  end
+end
+
+fake_orders = []
+20.times do
+  new_order = Order.create(
+    name: Fake::Name.name,
+    address: Faker::Address.street_address,
+    city:Faker::Address.city,
+    state:Faker::Address.state,
+    zip:Faker::Address.zip.to_i,
+    user_id: users.sample(1).id,
+  )
+  fake_orders << new_order
+end
+
+fake_orders.each do |order|
+  rand(8).times do |n|
+    ItemOrder.create(
+      order_id: order.id,
+      item_id: faker_merchants[n].items[n].id,
+      price: faker_merchants[n].items[n].price,
+      quantity: rand(10)
+    )
+  end
+end
+
+
 
 # #bike_shop items
 # tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
@@ -58,24 +193,6 @@ end
 # pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "https://lh3.googleusercontent.com/proxy/8ngyjw7p9EZhRkkexSlckUdQl8AR0MXwc-n9GkDPbCvcdP0deqBIqHc8-TRdTMqkJEqBDAXiJ6y5ZnkDN-lmzckmh6unqgKrjdYHByHUt18F5mAZFNeyUQFznjZPM4-x0_gkJZAPTnd0vSYx8xp56fd00pc", inventory: 32)
 # dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
 
-# Users
-User.create(name: "Taylor",
-            address: "555 Main St.",
-            city: "Louisville",
-            state: "Co",
-            zip: 80027,
-            email: "t.keller@gmail.com",
-            password: "taylor",
-            role: 0)
-# Admin
-User.create(name: "Admin",
-            address: "555 Main St.",
-            city: "Louisville",
-            state: "CO",
-            zip: 80027,
-            email: "admin@gmail.com",
-            password: "admin",
-            role: 2)
 
 
 # meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
