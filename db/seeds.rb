@@ -162,14 +162,15 @@ orders.each do |order|
 end
 
 fake_orders = []
+
 20.times do
   new_order = Order.create(
-    name: Fake::Name.name,
+    name: Faker::Name.name,
     address: Faker::Address.street_address,
     city:Faker::Address.city,
     state:Faker::Address.state,
     zip:Faker::Address.zip.to_i,
-    user_id: users.sample(1).id,
+    user_id: users.sample.id,
   )
   fake_orders << new_order
 end

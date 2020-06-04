@@ -12,11 +12,14 @@
       <p><%= @item.description %></p>
       <p>Price: <%= number_to_currency(@item.price )%> </p>
       <p>Inventory: <%= @item.inventory %> </p>
-      <% if @item.active? %>
-        <p style= "color:green">Active</p>
-      <% else %>
-        <p style= "color:red">Inactive</p>
-      <% end %>
+      <% if current_user && (current_user.merchant? || current_user.admin?) %>
+          <% if item.active? %>
+            <p style= "color:green">Active</p>
+          <% else %>
+            <p style= "color:red">Inactive</p>
+          <% end %>
+        <% end %>
+
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete if @item.no_orders?%></p>
       <%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %>
