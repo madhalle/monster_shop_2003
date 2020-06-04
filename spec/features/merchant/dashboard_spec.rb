@@ -28,12 +28,11 @@ RSpec.describe "when logged in as a merchant employee" do
      expect(page).to have_content(@bike_shop.zip)
   end
 
-  it "I will see a link to view my items" do
+  xit "I will see a link to view my items" do
      visit "/merchant"
      click_on "View Your Items"
      expect(current_path).to eq("/merchant/items")
   end
-end
 
   it "I will see name & address of merchant I work for on my dashboard" do
     @user = User.create!(name: "Fiona",
@@ -57,7 +56,5 @@ end
 
     expect(page).to have_content(@order.id)
     expect(page).to have_content(@order.created_at.strftime("%m/%d/%Y"))
-    save_and_open_page
   end
 end
-
