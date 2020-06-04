@@ -32,7 +32,6 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_link(@tire.name)
         expect(page).to have_content(@tire.description)
         expect(page).to have_content("Price: $#{@tire.price}")
-        expect(page).to have_content("Active")
         expect(page).to have_content("Inventory: #{@tire.inventory}")
         expect(page).to have_link(@meg.name)
         expect(page).to have_css("img[src*='#{@tire.image}']")
@@ -42,7 +41,6 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_link(@pull_toy.name)
         expect(page).to have_content(@pull_toy.description)
         expect(page).to have_content("Price: $#{@pull_toy.price}")
-        expect(page).to have_content("Active")
         expect(page).to have_content("Inventory: #{@pull_toy.inventory}")
         expect(page).to have_link(@brian.name)
         expect(page).to have_css("img[src*='#{@pull_toy.image}']")
@@ -69,9 +67,10 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_content(@pull_toy.name)
       expect(page).to_not have_content(@dog_bone.name)
     end
-
   end
+
   describe "visiting the items index page as any type of visitor" do
+
     it "I can see a section with item statistics" do
       user = User.create(name: "Fiona",
                          address: "123 Top Of The Tower",
@@ -97,18 +96,18 @@ RSpec.describe "Items Index Page" do
       cthulhu = brian.items.create(name: "Cthulhu", description: "Great gift!", price: 20, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQP11jyikd5WuCr4Ag4RK5uCn0NMoIee3IhkW3ZQV9w0-7MKSIA&usqp=CAU", inventory: 20)
       fairy = brian.items.create(name: "Fairy", description: "Sprinkle a little and spread your wings", price: 20, image: "https://i.etsystatic.com/6759919/r/il/806b42/1188540485/il_570xN.1188540485_fbhk.jpg", inventory: 20)
 
-      order_1 = Order.create(name: "Fiona", address: "123 Top Of The Tower", city: "Duloc City", state: "Duloc State", zip: 10001, user_id: user.id)
+      order = Order.create(name: "Fiona", address: "123 Top Of The Tower", city: "Duloc City", state: "Duloc State", zip: 10001, user_id: user.id)
 
-      ItemOrder.create(order_id: order_1.id, item_id: fairy.id, price: 50, quantity: 6)
-      ItemOrder.create(order_id: order_1.id, item_id: tire.id, price: 50, quantity: 10)
-      ItemOrder.create(order_id: order_1.id, item_id: werewolf.id, price: 50, quantity: 9)
-      ItemOrder.create(order_id: order_1.id, item_id: cthulhu.id, price: 50, quantity: 7)
-      ItemOrder.create(order_id: order_1.id, item_id: mermaid.id, price: 50, quantity: 8)
-      ItemOrder.create(order_id: order_1.id, item_id: dog_bone.id, price: 50, quantity: 3)
-      ItemOrder.create(order_id: order_1.id, item_id: griffin.id, price: 50, quantity: 4)
-      ItemOrder.create(order_id: order_1.id, item_id: frankenstein.id, price: 50, quantity: 2)
-      ItemOrder.create(order_id: order_1.id, item_id: pull_toy.id, price: 50, quantity: 1)
-      ItemOrder.create(order_id: order_1.id, item_id: dragon.id, price: 50, quantity: 5)
+      ItemOrder.create(order_id: order.id, item_id: fairy.id, price: 50, quantity: 6)
+      ItemOrder.create(order_id: order.id, item_id: tire.id, price: 50, quantity: 10)
+      ItemOrder.create(order_id: order.id, item_id: werewolf.id, price: 50, quantity: 9)
+      ItemOrder.create(order_id: order.id, item_id: cthulhu.id, price: 50, quantity: 7)
+      ItemOrder.create(order_id: order.id, item_id: mermaid.id, price: 50, quantity: 8)
+      ItemOrder.create(order_id: order.id, item_id: dog_bone.id, price: 50, quantity: 3)
+      ItemOrder.create(order_id: order.id, item_id: griffin.id, price: 50, quantity: 4)
+      ItemOrder.create(order_id: order.id, item_id: frankenstein.id, price: 50, quantity: 2)
+      ItemOrder.create(order_id: order.id, item_id: pull_toy.id, price: 50, quantity: 1)
+      ItemOrder.create(order_id: order.id, item_id: dragon.id, price: 50, quantity: 5)
 
       visit '/items'
 

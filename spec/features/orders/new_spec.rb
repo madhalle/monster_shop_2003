@@ -8,7 +8,7 @@ RSpec.describe("New Order Page") do
       @pencil = @mike.items.create(name: "Yellow Pencil", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 100)
 
       login_user
-      
+
       visit "/items/#{@paper.id}"
       click_on "Add To Cart"
       visit "/items/#{@paper.id}"
@@ -46,7 +46,6 @@ RSpec.describe("New Order Page") do
         expect(page).to have_content("1")
         expect(page).to have_content("$2")
       end
-
       expect(page).to have_content("Total: $142")
     end
 

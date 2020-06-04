@@ -26,5 +26,13 @@ class Merchant <ApplicationRecord
     item_orders.distinct.joins(:order).pluck(:city)
   end
 
+  def merchant_orders
+    # merchant_items = Item.where(:merchant_id == id)
+    # require "pry"; binding.pry
+    # Order.joins(:items).where( )
+    Order.joins(:items).where(:merchant_id == id, :status == "pending" ).group(:id)
+    # Order.joins(:items).where(:merchant_id == id, :status == "pending" )
+  end
+
 
 end

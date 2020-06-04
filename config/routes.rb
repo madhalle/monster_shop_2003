@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/profile/edit", to: 'profile#edit'
   get "/profile/edit_password", to: 'profile#edit_password'
   get "/profile/orders", to: 'user/orders#index'
+  get "/profile/orders/:order_id", to: "user/orders#show"
 
   get "/logout", to: "welcome#index"
 
@@ -51,15 +52,23 @@ Rails.application.routes.draw do
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"
+  patch "/orders/:order_id", to: "orders#update"
+
+  patch "/item_orders/:item_order_id", to: "item_orders#update"
 
   namespace :admin do
     get "/", to: "orders#index"
     get "/users", to: "users#index"
     get "/merchants/:merchant_id", to: "merchant_dashboard#index"
+    get "/users/:id", to: "users#show"
+    patch "/orders/:id/ship", to: "orders#ship"
+    get "/merchants", to: "merchants#index"
+    patch "/merchants/:merchant_id", to: "merchants#update"
   end
 
   namespace :merchant do
     get '/', to: "dashboard#index"
+    get '/orders/:id', to: "orders#show"
     resources :items, only: [:index, :update]
   end
 
