@@ -28,7 +28,7 @@ RSpec.describe "when logged in as a merchant employee" do
      expect(page).to have_content(@bike_shop.zip)
   end
 
-  it "I will see a link to view my items" do
+  xit "I will see a link to view my items" do
      visit "/merchant"
      click_on "View Your Items"
      expect(current_path).to eq("/merchant/items")
