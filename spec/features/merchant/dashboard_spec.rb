@@ -34,7 +34,6 @@ RSpec.describe "when logged in as a merchant employee" do
      expect(current_path).to eq("/merchant/items")
   end
 
-
   it "I will see name & address of merchant I work for on my dashboard" do
     @user = User.create!(name: "Fiona",
                        address: "123 Top Of The Tower",

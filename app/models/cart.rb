@@ -32,4 +32,11 @@ class Cart
     end
   end
 
+  def increase_quantity(item)
+    contents["#{item.id}"] += 1
+  end
+
+  def decrease_quantity(item)
+    contents["#{item.id}"] -= 1
+  end
 end
