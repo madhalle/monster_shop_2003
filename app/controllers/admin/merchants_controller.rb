@@ -4,6 +4,10 @@ class Admin::MerchantsController < Admin::BaseController
     @merchants = Merchant.all
   end
 
+  def show
+    @merchant = Merchant.find(params[:merchant_id])
+  end
+
   def update
     @merchant = Merchant.find(merchant_params[:merchant_id])
     @merchant.toggle!(:active?)
@@ -13,6 +17,7 @@ class Admin::MerchantsController < Admin::BaseController
     flash[:update] = "#{@merchant.name}'s account has been #{merchant_params[:type]}d."
     redirect_to "/admin/merchants"
   end
+
 
   private
     def merchant_params

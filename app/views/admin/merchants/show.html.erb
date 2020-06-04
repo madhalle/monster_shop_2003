@@ -1,0 +1,20 @@
+<h1> Dashboard</h1>
+
+<h2><%=@merchant.name%> </h2>
+<p><%=@merchant.address%></p><br>
+
+<p><%=@merchant.city%>, <%=@merchant.state%></p><br>
+<p><%=@merchant.zip%></p>
+
+<h2><%= link_to "View Your Items", "/merchant/items" %></h2>
+
+<p><%= @merchant.city%>, <%=@merchant.state%></p><br>
+<p> <%= @merchant.zip%> </p>
+
+<h2> Pending Orders</h2>
+<%@merchant.merchant_orders.each do |order|%>
+      <h3>Order #: <%= order.id %></h3><br>
+      <p>Order placed on: <%= order.created_at.strftime("%m/%d/%Y") %></p><br>
+      <p>Items in order: <%= order.total_item_count %></p><br>
+      <p>Total val: <%= order.grandtotal %></p><br>
+<% end %>
