@@ -19,6 +19,7 @@ class Order <ApplicationRecord
 
   def all_items_fulfilled?
     item_orders.all? { |item_order| item_order.status == "fulfilled"}
+    #where startus fulfilled, eq to # of orders
   end
 
   def package

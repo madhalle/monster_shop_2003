@@ -1,6 +1,7 @@
 class Merchant <ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :item_orders, through: :items
+  #orders through item_orders
   has_many :users
 
   validates_presence_of :name,
@@ -27,11 +28,10 @@ class Merchant <ApplicationRecord
   end
 
   def merchant_orders
-    # merchant_items = Item.where(:merchant_id == id)
-    # require "pry"; binding.pry
-    # Order.joins(:items).where( )
-    Order.joins(:items).where(:merchant_id == id, :status == "pending" ).group(:id)
-    # Order.joins(:items).where(:merchant_id == id, :status == "pending" )
+
+    Order.joins(:items).where(:merchant_id == id, :status == "pending" ).group(:id)#distinct
+    #specify merchant_id is on items table
+    #.orders where status pending
   end
 
 
